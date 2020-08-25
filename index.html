@@ -1,3 +1,13 @@
+<!-- 
+Implementar no software na página da Estatística Descritiva para dia 09/09:
+Entrada de dados (manualmente ou por uploud) <-- feito
+Nome da variável <-- feito
+Ícones amostra ou população <-- feito
+Ícones tipos de variáveis <-- feito
+Botão de Calcular <--feito
+Tabelas montadas. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +21,31 @@
         <input id='dados' type='string'/>
     </p>
     <p>
+        Ou se preferir, faça o upload dos dados clicando no botão abaixo.
+    </p>
+    <p>
+        <button>Upload</button>
+    </p>
+    <p>
         Nome da variavel a ser pesquisada.
         <input id='nome' type='string'/>
+    </p>
+    <p>
+        Especifique se a variável é uma amostra ou uma população. 
+    </p>
+    <p>
+        <button>Amostra</button>
+        <button>População</button>
+    </p>
+    <p>
+        <label for="variaveis">Escolha o tipo de variável:</label>
+
+        <select id="variaveis">
+            <option value="vqn">Variável Qualitativa Nominal</option>
+            <option value="vqo">Variável Qualitativa Ordinal</option>
+            <option value="vquand">Variável Quantitativa Discreta</option>
+            <option value="vquanc">Variável Quantitativa Contínua</option>
+        </select>
     </p>
     <p>
         <button onclick="calcular()">Calcular</button>
