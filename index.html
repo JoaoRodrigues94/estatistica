@@ -7,15 +7,15 @@
 
     <style>
         .menu{
-            background-color:dimgrey;
+            background-color:rgb(182, 181, 181);
             width:160px;
             height: 20px;
             border-right-style:solid ;
             border-right-width: 2px;
-            border-right-color:mediumblue ;
+            border-right-color:rgb(121, 121, 255) ;
         }
         .sub{
-        background-color:dimgray;
+        background-color:rgb(182, 181, 181);
         width:160px;
         visibility: hidden;
     }
@@ -102,23 +102,23 @@
     </p>
 
     <div class="menu" id='m1' onmouseover="mostra_s1()">
-        Seleciona uma Variável:
+        Selecione uma Variável:
     </div>
-
-    <div class="sub" id='s1' onclick="esconder()">
-        <div onclick= nominal()>
+    <label for=variaveis></label>
+    <select class="sub" id='s1'>
+        <option onclick= nominal()>
             Qualitativa Nominal
-        </div>
-        <div onclick="ordinal()">
+        </option>
+        <option onclick="ordinal()">
             Qualitativa Ordinal
-        </div>
-        <div onclick="discreta()">
+        </option>
+        <option onclick="discreta()">
             Quantitativa Discreta
-        </div>
-        <div onclick="continua()">
+        </option>
+        <option onclick="continua()">
             Quantitativa Contínua
-        </div>
-    </div>
+        </option>
+    </select>
 
     <p>
         <button onclick="calcular()">Calcular</button>
