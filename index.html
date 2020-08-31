@@ -1,19 +1,81 @@
-<!-- 
-Implementar no software na página da Estatística Descritiva para dia 09/09:
-Entrada de dados (manualmente ou por uploud) <-- feito
-Nome da variável <-- feito
-Ícones amostra ou população <-- feito
-Ícones tipos de variáveis <-- feito
-Botão de Calcular <--feito
-Tabelas montadas. 
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <script src='app.js'></script>
-    <title>Teste</title>
+    <title>Index</title>
+
+    <style>
+        .menu{
+            background-color:dimgrey;
+            width:160px;
+            height: 20px;
+            border-right-style:solid ;
+            border-right-width: 2px;
+            border-right-color:mediumblue ;
+        }
+        .sub{
+        background-color:dimgray;
+        width:160px;
+        visibility: hidden;
+    }
+
+    #m1{
+        position:relative;
+        top: 0px;
+        left: 0px;
+    }
+    #s1 {
+        position:relative;
+        top: 2px;
+        left: 0px;
+    }
+
+        .tb{
+            background-color:honeydew;
+            width: 250px;
+            height: 25px;
+            border-right-style: solid;
+            border-right-width: 3px;
+            border-left-style: solid;
+            border-bottom-style: solid;
+            border-top-style: solid;
+            visibility: collapse;
+
+        }
+        .aux {
+            background-color:azure;
+            width: 250px;
+            height: 25px;
+            border-right-style: solid;
+            border-left-style: solid;
+            border-bottom-style: solid;
+            border-top-style: solid;
+            visibility: collapse;
+        }
+
+        #tb1{
+            position: relative;
+            top: 0px;
+            left: 0px;
+        }
+        #tb2{
+            position: relative;
+            top: -62px;
+            left: 251px;
+        }
+        #sub1{
+            position: relative;
+            top: 0px;
+            left: 0px;
+        }
+        #sub2{
+            position: relative;
+            top: -62px;
+            left: 251px;
+        }
+    </style>
+
 </head>
 <body>
     <p>
@@ -21,10 +83,11 @@ Tabelas montadas.
         <input id='dados' type='string'/>
     </p>
     <p>
-        Ou se preferir, faça o upload dos dados clicando no botão abaixo.
+        Ou se preferir, faça o upload do arquivo .csv clicando no botão abaixo.
     </p>
     <p>
-        <button>Upload</button>
+        <div id='container'></div>
+        <input type='button' value='upload' id='add-file-btn' />
     </p>
     <p>
         Nome da variavel a ser pesquisada.
@@ -37,22 +100,66 @@ Tabelas montadas.
         <button>Amostra</button>
         <button>População</button>
     </p>
-    <p>
-        <label for="variaveis">Escolha o tipo de variável:</label>
 
-        <select id="variaveis">
-            <option value="vqn">Variável Qualitativa Nominal</option>
-            <option value="vqo">Variável Qualitativa Ordinal</option>
-            <option value="vquand">Variável Quantitativa Discreta</option>
-            <option value="vquanc">Variável Quantitativa Contínua</option>
-        </select>
-    </p>
+    <div class="menu" id='m1' onmouseover="mostra_s1()">
+        Seleciona uma Variável:
+    </div>
+
+    <div class="sub" id='s1' onclick="esconder()">
+        <div onclick= nominal()>
+            Qualitativa Nominal
+        </div>
+        <div onclick="ordinal()">
+            Qualitativa Ordinal
+        </div>
+        <div onclick="discreta()">
+            Quantitativa Discreta
+        </div>
+        <div onclick="continua()">
+            Quantitativa Contínua
+        </div>
+    </div>
+
     <p>
         <button onclick="calcular()">Calcular</button>
     </p>
-    <p>
-        Saída de Teste
-        <h1 id = 'vetor'></h1> 
-    </p>
+    <div id="saida">
+        <p>
+        -----------------------------------------------------------    ----------------------------------------------------------------------------------------
+            <h1 id = 'vetor'></h1> 
+        </p>
+
+    </div>
+
+    
+    <section>
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th id="vlnome"></th>
+                    <th>Frequencia Simples <br/>(fi)</th>
+                </tr>
+                <tr>
+                    <td id='l1'></td>
+                    <td id='l2'></td>
+                </tr>
+            </thead>
+        </table>
+    </section>
+    
+        <!--
+        <div class='tb' id='tb1'>
+            
+        </div>
+        <div class="aux" id="sub1">
+
+        </div>
+        <div class="tb" id="tb2">
+            valor
+        </div>
+        <div class="aux" id="sub2">
+
+        </div>
+        -->
 </body>
 </html>

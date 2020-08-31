@@ -1,25 +1,51 @@
-// Utilizei o arquivo csv através do node.js para exibir os dados.
-const readline = require('readline')
-const fs = require('fs')
-const readable = fs.createReadStream('Dados.csv')
+// Funções de cada opção, deve interagir com a function Calcular.
+let nominal = function(nominal){}
+let ordinal = function(ordinal){}
+let discreta = function(discreta){}
+let continua = function(continua){}
 
-const rl = readline.createInterface({
-    input: readable,
-    //output: process.stdout
-})
+let calcular = function(nominal, ordinal, discreta, continua){
+    var dados = document.getElementById('dados').value
+    var vetor = dados.split(";") // Separa os valores.
+    vetor.sort() // Ordena em ordem alfabética.
 
-rl.on('line', (column) =>{
-    console.log('>>>', column)
-})
-
-function calcular(){
-    // Separei cada um dos dados inseridos pelo usuário utilizando ";"
-    let dados = document.getElementById('dados').value
-    let vetor = dados.split(";")
-    
-    document.getElementById('vetor').innerHTML = vetor
-
-    // Nome da variável que vai ser pesquisada. 
-    //Será utilizada na tabela.
     let nome = document.getElementById('nome').value
+
+    if((nominal == onclick) || (ordinal == onclick) || (discreta == onclick)){
+        var occurrences = {};
+        for (var i = 0, j = vetor.length; i < j; i++) {
+            occurrences[vetor[i]] = (occurrences[vetor[i]] || 0) + 1;
+        }
+        console.log(occurrences)
+        document.getElementById('vlnome').innerHTML = nome
+        document.getElementById('l1').innerHTML = occurrences
+        document.getElementById('l2').innerHTML = occurrences
+    }
+    
+    if(continua == onclick){
+        var occurrences = {};
+        for (var i = 0, j = vetor.length; i < j; i++) {
+            occurrences[vetor[i]] = (occurrences[vetor[i]] || 0) + 1;
+        }
+        console.log(occurrences)
+        document.getElementById('vlnome').innerHTML = nome
+        document.getElementById('l1').innerHTML = occurrences
+        document.getElementById('l2').innerHTML = occurrences
+    }
+
+    mostrartab(vetor, occurrences)
+}
+
+// Função para que seja mostrado a tabela.
+let mostrartab = function(mostrartab){
+    
+}
+
+//Permiti mostrar o menu de opções ao passar o mouse em cima.
+function mostra_s1(){
+    document.getElementById('s1').style.visibility="visible";
+}
+// Esconde o menu de opção
+function esconder(){
+    document.getElementById('s1').style.visibility='hidden';
 }
