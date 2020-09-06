@@ -1,0 +1,29 @@
+table{
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    word-wrap: break-word;
+    border: none;
+}
+thead{
+    background-color: rgb(63, 63, 63);
+    color: whitesmoke;
+    border: none;
+}
+tr{
+    border:none;
+    border-bottom:1px solid gray;
+}
+th{
+    width: 100px;
+    height: auto;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.div-da-tabela{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

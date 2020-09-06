@@ -3,84 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <script src='app.js'></script>
-    <title>Index</title>
-
-    <style>
-        .menu{
-            background-color:rgb(182, 181, 181);
-            width:160px;
-            height: 20px;
-            border-right-style:solid ;
-            border-right-width: 2px;
-            border-right-color:rgb(121, 121, 255) ;
-        }
-        .sub{
-        background-color:rgb(182, 181, 181);
-        width:160px;
-        visibility: hidden;
-    }
-
-    #m1{
-        position:relative;
-        top: 0px;
-        left: 0px;
-    }
-    #s1 {
-        position:relative;
-        top: 2px;
-        left: 0px;
-    }
-
-        .tb{
-            background-color:honeydew;
-            width: 250px;
-            height: 25px;
-            border-right-style: solid;
-            border-right-width: 3px;
-            border-left-style: solid;
-            border-bottom-style: solid;
-            border-top-style: solid;
-            visibility: collapse;
-
-        }
-        .aux {
-            background-color:azure;
-            width: 250px;
-            height: 25px;
-            border-right-style: solid;
-            border-left-style: solid;
-            border-bottom-style: solid;
-            border-top-style: solid;
-            visibility: collapse;
-        }
-
-        #tb1{
-            position: relative;
-            top: 0px;
-            left: 0px;
-        }
-        #tb2{
-            position: relative;
-            top: -62px;
-            left: 251px;
-        }
-        #sub1{
-            position: relative;
-            top: 0px;
-            left: 0px;
-        }
-        #sub2{
-            position: relative;
-            top: -62px;
-            left: 251px;
-        }
-    </style>
-
+    <title>Grupo 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <p>
         Entrada de dados, utilize ';' para separar os dados. 
-        <input id='dados' type='string'/>
+        <input id='dados' />
     </p>
     <p>
         Ou se preferir, faça o upload do arquivo .csv clicando no botão abaixo.
@@ -101,65 +33,55 @@
         <button>População</button>
     </p>
 
-    <div class="menu" id='m1' onmouseover="mostra_s1()">
+    <div class="menu" id='m1'>
         Selecione uma Variável:
     </div>
     <label for=variaveis></label>
     <select class="sub" id='s1'>
-        <option onclick= nominal()>
+        <option>
             Qualitativa Nominal
         </option>
-        <option onclick="ordinal()">
+        <option>
             Qualitativa Ordinal
         </option>
-        <option onclick="discreta()">
+        <option >
             Quantitativa Discreta
         </option>
-        <option onclick="continua()">
+        <option>
             Quantitativa Contínua
         </option>
     </select>
 
     <p>
-        <button onclick="calcular()">Calcular</button>
+        <button onclick="Dados()">Calcular</button>
     </p>
     <div id="saida">
         <p>
-        -----------------------------------------------------------    ----------------------------------------------------------------------------------------
+        <hr>
             <h1 id = 'vetor'></h1> 
         </p>
 
     </div>
 
+    <div id=mostrar></div>
     
-    <section>
-        <table id="tabela">
-            <thead>
-                <tr>
-                    <th id="vlnome"></th>
-                    <th>Frequencia Simples <br/>(fi)</th>
-                </tr>
-                <tr>
-                    <td id='l1'></td>
-                    <td id='l2'></td>
-                </tr>
-            </thead>
-        </table>
-    </section>
     
-        <!--
-        <div class='tb' id='tb1'>
-            
-        </div>
-        <div class="aux" id="sub1">
+    <div class="div-da-tabela">
+    <table>
+        <thead>
+            <tr>
+                <th id = 'col'></th>
+                <th  id='Fi'></th>
+            </tr>   
+        </thead>
+        <tbody>
 
-        </div>
-        <div class="tb" id="tb2">
-            valor
-        </div>
-        <div class="aux" id="sub2">
+        </tbody>
+     </table>
 
-        </div>
-        -->
+</div>
+<br><br><br><br><br>
 </body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </html>
