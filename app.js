@@ -241,7 +241,7 @@ function Dados() {
         var texto_Fac = document.createTextNode(`${con[i]}`)
         var texto_Fac_ = document.createTextNode(`${Math.floor(con[i] * 100 / aux)} %`)
 
-        document.getElementById('ordenar').innerHTML = 'Id'
+        document.getElementById('ordenar').innerHTML = 'ID'
         campo_ord.appendChild(texto_campo)
         campo_variavel.appendChild(texto_variavel)
         campo_fi.appendChild(texto_Fi)
