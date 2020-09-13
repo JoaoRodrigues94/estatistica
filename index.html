@@ -3,85 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <script src='app.js'></script>
-    <title>Grupo 3</title>
+	<title>Grupo 3</title>
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.16.1/sortable.js"></script>
+	-->
+	<!--Gráfico-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/variwide.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style>
+        .grafico{
+            visibility: hidden;
+        }
+
+		.mostrar{
+			visibility: hidden;
+		}
+    </style>
+
 </head>
-<body>
-    <p>
-        Entrada de dados, utilize ';' para separar os dados. 
-        <input id='dados' />
-    </p>
-    <p>
-        Ou se preferir, faça o upload do arquivo .csv clicando no botão abaixo.
-    </p>
-    <p>
-        <div id='container'></div>
-        <input type='button' value='upload' id='add-file-btn' />
-    </p>
-    <p>
-        Nome da variavel a ser pesquisada.
-        <input id='nome' type='string'/>
-    </p>
-    <p>
-        Especifique se a variável é uma amostra ou uma população. 
-    </p>
-    <p>
-        <button>Amostra</button>
-        <button>População</button>
-    </p>
+<body class="container-fluid" ng-controller="listagemIndexControl">
+	<div class="container">
+		<div class="col-md-12">
+			<h1 class="text-center">Estatísticas - Grupo 3</h1>
+		</div>
+		<div class="col-md-12">
+			<form>
+				<div class="form-group">
+					<label for="dados">Entrada de dados, utilize ';' para separar os dados.</label>
+					<input type="text" class="form-control" id="dados">
+				</div>
+				<div class="form-group">
+					<label for="add-file-btn">Ou se preferir, faça o upload do arquivo .csv clicando no botão abaixo.</label>
+					<input type='file' class="form-control-file" id='add-file-btn'>
+				</div>
+				<div class="form-group">
+					<label for="nome">Nome da variavel a ser pesquisada..</label>
+					<input type="text" class="form-control" id="nome">
+				</div>
+				<div class="form-group">
+					<label for="dados">Especifique se a variável é uma amostra ou uma população.</label>
+				</div>
+				<div class="form-group form-radio">
+					<input type="radio" class="form-radio-input" id="amostra" name="variavel">
+					<label class="form-radio-label" for="amostra">Amostra</label>
+				</div>
+				<div class="form-group form-radio">
+					<input type="radio" class="form-radio-input" id="populacao" name="variavel">
+					<label class="form-radio-label" for="populacao">População</label>
+				</div>
+				<div class="form-group">
+					<label for="dados">Selecione uma Variável:</label>
+					<select class="custom-select" id='s1'>
+				        <option>
+				            Qualitativa Nominal
+				        </option>
+				        <option>
+				            Qualitativa Ordinal
+				        </option>
+				        <option >
+				            Quantitativa Discreta
+				        </option>
+				        <option>
+				            Quantitativa Contínua
+				        </option>
+				    </select>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-12">
+			<button class="btn btn-primary btn-block" onclick="Dados()">Calcular</button>
+		</div>
+		<div class="col-md-12" ng-app="listagemIndex" ng-controller="listagemIndexControl">
+			<table class="table table-bordered">
+			    <thead>
+			        <tr>
+						<th id='ordenar'></th>
+			            <th id="col"></th>
+			            <th id='fi'></th>
+			            <th id='fr'></th>
+			            <th id='fac'></th>
+			            <th id='fac_'></th>
+			        </tr>   
+			    </thead>
+			    <tbody id="sortable" ui-sortable="" ng-model="conjunto">
 
-    <div class="menu" id='m1'>
-        Selecione uma Variável:
-    </div>
-    <label for=variaveis></label>
-    <select class="sub" id='s1'>
-        <option>
-            Qualitativa Nominal
-        </option>
-        <option>
-            Qualitativa Ordinal
-        </option>
-        <option >
-            Quantitativa Discreta
-        </option>
-        <option>
-            Quantitativa Contínua
-        </option>
-    </select>
+			    </tbody>
+			</table>
+			<p>Para organizar a tabela, clique em cima da linha deseja e arreste para onde quiser.</p>
+		</div>
+	</div>
+	<figure class="highcharts-figure">
+		<div id="container"></div>
+		<p class="highcharts-description">
+		</p>
+		<div class='mostrar' onclick="bar()">
+			<button id="plain">Plain</button>
+			<button id="inverted">Inverted</button>
+			<button id="polar">Polar</button>
+		</div>
 
-    <p>
-        <button onclick="Dados()">Calcular</button>
-    </p>
-    <div id="saida">
-        <p>
-        <hr>
-            <h1 id = 'vetor'></h1> 
-        </p>
-
-    </div>
-
-    <div id=mostrar></div>
-    
-    
-    <div class="div-da-tabela">
-    <table>
-        <thead>
-            <tr>
-                <th id = 'col'></th>
-                <th  id='Fi'></th>
-            </tr>   
-        </thead>
-        <tbody>
-
-        </tbody>
-     </table>
-
-</div>
-<br><br><br><br><br>
+	  </figure>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </html>
