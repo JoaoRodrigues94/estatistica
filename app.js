@@ -59,10 +59,10 @@ function Dados() {
           }
         }
 
-        var texto_Fr = document.createTextNode(`${Math.floor(occurrences[nomesVetor[0][i]] * 100 / aux)} %`)
-        frequency[i] = Math.floor(occurrences[nomesVetor[0][i]] * 100 / aux)
+        var texto_Fr = document.createTextNode(`${(occurrences[nomesVetor[0][i]] * 100 / aux).toFixed(2)} %`)
+        frequency[i] = (occurrences[nomesVetor[0][i]] * 100 / aux)
         var texto_Fac = document.createTextNode(`${con[i]}`)
-        var texto_Fac_ = document.createTextNode(`${Math.floor(soma[i])} %`)
+        var texto_Fac_ = document.createTextNode(`${Number(soma[i]).toFixed(2)} %`)
         linha.id = i+1
 
         //botoes de setinha
@@ -179,12 +179,60 @@ function Dados() {
       const corpo_tabela = document.querySelector("tbody");
       corpo_tabela.innerHTML = ""
 
+      // Função para achar quantas linhas a tabela vai ter.
+      let help = 0
+    for(let i = 0; i < nomesVetor[0].length; i++){
+      help++
+    }
+
+      let resulta = ultimo - primeiro
+      let k = Math.sqrt(help)
+      k= Math.ceil(k)
+      let lin
+      let sair = 1
+      // Defini qual a soma terá entre os valores.
+      do {
+        if(resulta % (k-1) === 0){
+          lin = resulta / (k-1)
+          sair = 0
+        } else if(resulta % k === 0){
+          lin = resulta / k
+          sair = 0
+        } else if(resulta % (k+1) === 0){
+          lin = resulta / (k+1)
+          sair = 0
+        } else{
+          resulta++ 
+        }
+      } while (sair != 0);
+ 
+      // término
+      let mais = 0
+      let ajd = 0
+      let m = []
+
       for (var i = 0; i < cont; i++) {
         var linha = document.createElement("tr")
         var campo_variavel = document.createElement("td")
+        console.log('Raiz quadrada = ' + k)
+        console.log('Resulta = '+ resulta + ', lin =' + lin )
 
-        var texto_variavel = document.createTextNode(`${respostas[i]} |- ${respostas[i + 1]}`)
-
+        if(i === 0){
+          var texto_variavel = document.createTextNode(`${respostas[i]} |- ${respostas[i] + lin} `)
+          mais = respostas[i] + lin
+          m[i] = (respostas[i])
+          m[i+1] = (respostas[i] + lin)
+        }else if(mais <= ultimo){
+          var texto_variavel = document.createTextNode(`${mais} |- ${mais + lin} `)
+          m[i] = mais
+          m[i + 1] = mais + lin
+          mais = mais + lin
+        }else{
+          var texto_variavel = document.createTextNode(`${mais} |- `)
+          m[i] = mais
+          m[i + 1] = mais + lin
+          break
+        }
         for (let j = 0; j < cont; j++) {
           var linha = document.createElement("tr");
           var campo_ord = document.createElement("td")
@@ -195,13 +243,16 @@ function Dados() {
           var campo_fac_ = document.createElement("td");
 
           total[j] = 0
-          for (let k = 0; k < nomesVetor[0].length; k++) {
+          for (let k = 0; k < cont; k++) {
             console.log("nomes - " + nomesVetor[0][k])
-            console.log(respostas[j] + " - " + respostas[j + 1])
-            if ((parseInt(nomesVetor[0][k]) < respostas[j + 1]) && (parseInt(nomesVetor[0][k]) >= respostas[j])) {
+            console.log(m[j] + " - " + m[j + 1])
+            if ((parseInt(nomesVetor[0][k]) < m[j + 1]) && (parseInt(nomesVetor[0][k]) >= m[j])) {
               total[j] += parseInt(occurrences[nomesVetor[0][k]])
             } else {
               total[j] += 0
+            }
+            if(nomesVetor[0][k] == undefined){
+              break
             }
           }
           console.log('VAlor total = ' + parseInt(total[j]))
@@ -532,11 +583,11 @@ function moveLinhas(nLinha, direcao, botao){
 
   }
   if(!direcao){  // Linha Para Baixo
-    var linhaAcima = document.getElementById(`${nLinha + 1}`)//seleciona a lina de cima
+    var linhaAbaixo = document.getElementById(`${nLinha + 1}`)//seleciona a lina de cima
     
     // Vetor 2
       for(var i = 1 ; i < linha.childNodes.length; i++){ // para cada elemento na linha
-        vetor2.push(linhaAcima.childNodes[i].innerHTML)
+        vetor2.push(linhaAbaixo.childNodes[i].innerHTML)
       }
     // Vetor 1
    
@@ -555,25 +606,36 @@ function moveLinhas(nLinha, direcao, botao){
     let n2 =  Number(vetor2[4].slice(0, -1))
     let n3 = Number(vetor2[3])
     let n4 = Number(vetor2[1])
-    vetor1[4] = `${n2 - n1} %`
-    vetor1[3] = `${n3 - n4}`
+    vetor1[4] = `${(n2 - n1).toFixed(2)} %`
+    vetor1[3] = `${(n3 - n4)}`
+    console.log(vetor1, vetor2)
+    for(var i = 0;i < vetor2.length;i++){
+      linha.childNodes[i+1].innerHTML = vetor2[i]
+      linhaAcima.childNodes[i+1].innerHTML = vetor1[i]  
+    }
     
   }else {
+    // b V vetor 1
+    // /\ c vetor 2
     vetor1[4] = vetor2[4]
+    //linha clicada recebe % da de baixo
+    let n1 =  Number(vetor1[2].slice(0, -1))
+    let n2 =  Number(vetor1[4].slice(0, -1))
+    
+    vetor2[4] = `${(n2 - n1).toFixed(2)} %`
+
+    ////////////////////////////////////////
     vetor1[3] = vetor2[3]
-    let n1 =  Number(vetor2[2].slice(0, -1))
-    let n2 =  Number(vetor2[4].slice(0, -1))
     let n3 = Number(vetor1[3])
     let n4 = Number(vetor1[1])
-    vetor2[4] = `${n2 - n1} %`
-    vetor2[3] = `${n3 - n4}`
-    console.log(n3 +' n4 =' + n4)
+    vetor2[3] = `${(n3 - n4)}`
+    for(var i = 0;i < vetor2.length;i++){
+      linha.childNodes[i+1].innerHTML = vetor2[i]
+      linhaAbaixo.childNodes[i+1].innerHTML = vetor1[i]  
+    }
   }
 
     
 
-  for(var i = 0;i < vetor2.length;i++){
-    linha.childNodes[i+1].innerHTML = vetor2[i]
-    linhaAcima.childNodes[i+1].innerHTML = vetor1[i]
-  }
+  
 } 
