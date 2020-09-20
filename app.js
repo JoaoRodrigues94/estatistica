@@ -3,6 +3,9 @@ function Dados() {
     || document.getElementById('s1').value == 'Quantitativa Discreta') { //executa o que estiver selecionado
     var dados = document.getElementById('dados').value //Input de dados
     var vetorDados = dados.split(";") //separa os dados em um vetor
+    for(var i = 0;i < vetorDados.length;i++){
+        vetorDados[i] =  vetorDados[i].trim()
+      }
     vetorDados.sort()//Coloca o vetor em ordem alfabetica
     console.log(vetorDados)
     var occurrences = {};//Obejto com o numero de elementos repetidos ex: preta:2 , branco:3 etc.
@@ -209,7 +212,7 @@ function Dados() {
  
       // término
       let mais = 0
-      let ajd = 0
+      let ajd = []
       let m = []
 
       for (var i = 0; i < cont; i++) {
@@ -223,15 +226,18 @@ function Dados() {
           mais = respostas[i] + lin
           m[i] = (respostas[i])
           m[i+1] = (respostas[i] + lin)
+          ajd[i] = (respostas[i] + lin)
         }else if(mais <= ultimo){
           var texto_variavel = document.createTextNode(`${mais} |- ${mais + lin} `)
           m[i] = mais
           m[i + 1] = mais + lin
           mais = mais + lin
+          ajd[i] = mais + lin
         }else{
           var texto_variavel = document.createTextNode(`${mais} |- `)
           m[i] = mais
           m[i + 1] = mais + lin
+          ajd[i] = mais + lin
           break
         }
         for (let j = 0; j < cont; j++) {
@@ -309,7 +315,7 @@ function Dados() {
 
         corpo_tabela.appendChild(linha)
       }
-      graficoContinuo(calc, respostas, nome)
+      graficoContinuo(calc, respostas, nome, ajd, lin)
     }
     calcular()
   }
@@ -457,10 +463,16 @@ function Dados() {
 
   }
 
-  function graficoContinuo(calc, respostas, nome) {
+  function graficoContinuo(calc, respostas, nome, ajd, lin) {
     let vet2 = []
+    let vet = []
+
     for (let i = 0; i < respostas.length; i++) {
-      respostas[i] = respostas[i] + ' |- ' + respostas[i + 1]
+        if(i === 0){
+            vet[i] = respostas[i] + ' |- ' + ajd[i]
+        } else {
+            vet[i] = ajd[i-1] + ' |- ' + (ajd[i-1]+lin)
+        }
       vet2.push(calc[i])
     }
 
@@ -481,7 +493,7 @@ function Dados() {
         }
       },
       xAxis: {
-        categories: respostas
+        categories: vet
       },
       yAxis: {
         title: {
@@ -548,14 +560,6 @@ function Dados() {
         text: 'Fr%'
       }
     });
-
-    function mediana(nomesVetor){
-      let aux = nomesVetor.length / 2
-      if (nomesVetor.length % 2 == 0){
-        document.getElementById('median').innerHTML = nomesVetor[aux] + "e" + nomesVetor[aux + 1]
-      } else {
-        document.getElementById('median').innerHTML = nomesVetor[aux.toFixed]}
-      }
 
   }
 }
