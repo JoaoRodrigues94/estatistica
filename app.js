@@ -226,18 +226,20 @@ function Dados() {
           mais = respostas[i] + lin
           m[i] = (respostas[i])
           m[i+1] = (respostas[i] + lin)
-          ajd[i] = (respostas[i] + lin)
+          ajd[i] = `${respostas[i]} |- ${respostas[i] + lin}`
         }else if(mais <= ultimo){
           var texto_variavel = document.createTextNode(`${mais} |- ${mais + lin} `)
+          ajd[i] = `${mais} |- ${mais+ lin}`
           m[i] = mais
           m[i + 1] = mais + lin
           mais = mais + lin
-          ajd[i] = mais + lin
+          
         }else{
           var texto_variavel = document.createTextNode(`${mais} |- `)
+          ajd[i] = `${mais} |-`
           m[i] = mais
           m[i + 1] = mais + lin
-          ajd[i] = mais + lin
+          
           break
         }
         for (let j = 0; j < cont; j++) {
@@ -465,14 +467,8 @@ function Dados() {
 
   function graficoContinuo(calc, respostas, nome, ajd, lin) {
     let vet2 = []
-    let vet = []
 
     for (let i = 0; i < respostas.length; i++) {
-        if(i === 0){
-            vet[i] = respostas[i] + ' |- ' + ajd[i]
-        } else {
-            vet[i] = ajd[i-1] + ' |- ' + (ajd[i-1]+lin)
-        }
       vet2.push(calc[i])
     }
 
@@ -493,7 +489,7 @@ function Dados() {
         }
       },
       xAxis: {
-        categories: vet
+        categories: ajd
       },
       yAxis: {
         title: {
