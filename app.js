@@ -112,6 +112,7 @@ function Dados() {
         }
       }
     }
+    mediana(nomesVetor)
     criarLinha()
   }
 
@@ -548,19 +549,16 @@ function Dados() {
       }
     });
 
+    function mediana(nomesVetor){
+      let aux = nomesVetor.length / 2
+      if (nomesVetor.length % 2 == 0){
+        document.getElementById('median').innerHTML = nomesVetor[aux] + "e" + nomesVetor[aux + 1]
+      } else {
+        document.getElementById('median').innerHTML = nomesVetor[aux.toFixed]}
+      }
 
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 function moveLinhas(nLinha, direcao, botao){
   var vetor1 = [] //vetor linha do botao q foi clikado
@@ -639,3 +637,27 @@ function moveLinhas(nLinha, direcao, botao){
 
   
 } 
+
+function mediana(nomesVetor){
+  if(document.getElementById('s1').value == 'Qualitativa Nominal') {
+    let acm = 0
+    let pos = [0,1]
+    let metade = 0
+    for(x in nomesVetor){
+      acm++
+    }
+    acm += 1 //porque o vetor começa do 0, então pra considerar a casa que seria 0 adicionei +1.
+    metade = acm/2
+
+    if(metade % 2 == 0){
+      pos[0] = nomesVetor[0][metade]
+      pos[1] = nomesVetor[0][metade + 1]
+      document.getElementById('median').innerHTML = pos[0] + '; ' + pos[1]
+    } else{
+      pos[0] = nomesVetor[0][metade + 1]
+      document.getElementById('median').innerHTML = pos[0]
+    }
+
+  }
+
+}

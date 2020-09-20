@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <script src='app.js'></script>
 	<title>Grupo 3</title>
-	<!--
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.16.1/sortable.js"></script>
-	-->
+
 	<!--Gráfico-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -111,6 +105,7 @@
 
 			    </tbody>
 			</table>
+			<p>Para organizar a tabela, clique em cima da linha deseja e arreste para onde quiser.</p>
 		</div>
 	</div>
 	<figure class="highcharts-figure">
@@ -125,5 +120,10 @@
 
 	  </figure>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<div class="media-content" onload="mediana()">
+		<p>
+			Mediana: <label id="median"></label>
+		</p>
+	</div>
 </body>
 </html>

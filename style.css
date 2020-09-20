@@ -144,3 +144,13 @@ th{
   .highcharts-data-table tr:hover {
     background: #f1f7ff;
   }
+
+  .media-content {
+    width: 100%;
+    max-width: 72rem;
+    border-radius: .8rem;
+    margin: -3.2rem auto 3.2rem;
+    padding-left: 1rem;
+    border:1px solid gray;
+    border-top:3px solid gray;
+  }
