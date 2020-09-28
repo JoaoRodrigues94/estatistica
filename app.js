@@ -1,5 +1,4 @@
 function Dados(){
-  var ultimo = 0
   if (document.getElementById('s1').value == 'Qualitativa Nominal' || document.getElementById('s1').value == 'Quantitativa Discreta') {
     function QualiNominaleDiscreta(){
         var dados = document.getElementById('dados').value //Captção de dados
@@ -7,14 +6,12 @@ function Dados(){
         vetorDados.sort()//Divisão dos dados entre o ";"
         for(var i = 0;i < vetorDados.length;i++){//loop para remover os espaços no fim e no inicio
             vetorDados[i] = vetorDados[i].trim()
-            ultimo++
         }
         vetorDados.sort()
         console.log(vetorDados)
         var occurrences = {}
         var nomesVetor = []
         var frequency = []
-        var num = 0
         for (var i = 0, j = vetorDados.length; i < j; i++) {
             if (vetorDados[i] == "") { //tratamento de dados caso o usuario coloque um ";" a mais
       
@@ -24,7 +21,7 @@ function Dados(){
             }
         }
         nomesVetor.push(Object.keys(occurrences))//Esse push coloca os valores do objeto na matriz nomesVetor
-        nomesVetor[0].sort()
+        
         console.log(nomesVetor[0])
         const corpo_tabela = document.querySelector("tbody");
   
@@ -58,6 +55,7 @@ function Dados(){
         function criarLinha() { //função de criar a tabela
             corpo_tabela.innerHTML = "" //isso serve para não adicionar elementos repetidos na tabela
             let soma = []
+            var valoresFi = []
             for (var i = 0; i < nomesVetor[0].length; i++) { //loop para criar a tabela com o tamanho da matriz nomesVetor
               console.log(nomesVetor[0][i])
               let aux = 0
@@ -74,6 +72,7 @@ function Dados(){
               //criar nós dos elementos
               
               var texto_Fi = document.createTextNode(occurrences[nomesVetor[0][i]])//cria um nó de texto com o valor Fi
+              valoresFi.push(occurrences[nomesVetor[0][i]])
               var con = []
               for (var j = 0; j < nomesVetor[0].length; j++) { //Loop para encontrar o valor base de Fr%.
                 aux += occurrences[nomesVetor[0][j]]
@@ -91,7 +90,6 @@ function Dados(){
               var texto_Fr = document.createTextNode(`${(occurrences[nomesVetor[0][i]] * 100 / aux).toFixed(2)} %`)
               frequency[i] = (occurrences[nomesVetor[0][i]] * 100 / aux)
               var texto_Fac = document.createTextNode(`${con[i]}`)
-              num = con[i]
               var texto_Fac_ = document.createTextNode(`${Number(soma[i]).toFixed(2)} %`)
               linha.id = i+1
 
@@ -107,19 +105,21 @@ function Dados(){
               linha.appendChild(campo_fac_);
 
               corpo_tabela.appendChild(linha);
-              moda(nomesVetor, ultimo, occurrences)
 
               if (document.getElementById('s1').value == 'Quantitativa Discreta') {
                 bar(nome, frequency, nomesVetor)
               } else {
                 pie(nome, frequency, nomesVetor);
               }
-              media(occurrences, nomesVetor)
-              moda(nomesVetor, ultimo, occurrences)
             }
+              console.log(`>>>${valoresFi}`)
+              moda(valoresFi,nomesVetor[0])
+              separatrizes(nomesVetor[0],con)
         }
-        //mediana(nomesVetor, num, occurrences)
+        
         criarLinha()
+        media(vetorDados)
+        mediana(nomesVetor[0])
     }  
     QualiNominaleDiscreta()
   }
@@ -183,11 +183,13 @@ function Dados(){
           //função de criar a tabela
           corpo_tabela.innerHTML = "" //isso serve para não adicionar elementos repetidos na tabela
           let soma = []
+          var valoresFi = []
           for (var i = 0; i < nomesVetor[0].length; i++) { //loop para criar a tabela com o tamanho da matriz nomesVetor
             console.log(nomesVetor[0][i])
             let aux = 0
             //criar elementos
-            var texto_variavel = document.createTextNode(nomesVetor[0][i]) //cria um nó de texto com o nome das variaveis
+            var texto_variavel = document.createTextNode(nomesVetor[0][i])
+            valoresFi.push(occurrences[nomesVetor[0][i]]) //cria um nó de texto com o nome das variaveis
             var linha = document.createElement("tr");//cria um tr da tabela
             var campo_variavel = document.createElement("td");//cria um campo do nome da variavel na tabela
             var campo_fi = document.createElement("td");//cria um campo da frequencia na tabela
@@ -261,10 +263,12 @@ function Dados(){
 
             pie(nome, frequency, nomesVetor);
           }
+          moda(valoresFi,nomesVetor[0])
+          separatrizes(nomesVetor[0],con)
         }
-        //mediana(nomesVetor, occurrences)
         criarLinha()
-        moda(nomesVetor, ultimo, occurrences)
+        media(vetorDados)
+        mediana(nomesVetor[0])
     }
     QualiOrdinal()
   }
@@ -316,6 +320,7 @@ function Dados(){
     document.getElementById('fr').innerHTML = 'Fr %'
     document.getElementById('fac').innerHTML = 'Fac'
     document.getElementById('fac_').innerHTML = 'Fac %'
+    var fi = []
 
     function calcular() {
       var cont = 0
@@ -323,10 +328,19 @@ function Dados(){
       var primeiro = 0
       var amplitude = 0
       let total = []
-      primeiro = nomesVetor[0][0]
+      var pos = 0
+      var posi = parseFloat(nomesVetor[0][0])
+      for(i in nomesVetor[0]){
+        if(pos < parseFloat(nomesVetor[0][i])){
+          pos = parseFloat(nomesVetor[0][i])
+        }
+        if(posi > parseFloat(nomesVetor[0][i])){
+          posi = parseFloat(nomesVetor[0][i])
+        }
+      }
+      primeiro = posi
       console.log(`primeiro ${primeiro}`)
-      ultimo = nomesVetor[0][nomesVetor[0].length - 1]
-      console.log(nomesVetor[0][nomesVetor[0].length])
+      ultimo = pos
       console.log(`Ultimo ${ultimo}`)
       amplitude = Math.round(Math.sqrt(ultimo - primeiro))
       console.log(`amplitude ${amplitude}`)
@@ -476,7 +490,9 @@ function Dados(){
           var texto_variavel = document.createTextNode(`${m[i]} |- ${m[i] + lin} `)
           var texto_Fr = document.createTextNode(`${Math.floor(total[i] * 100 / aux)} %`)
           var texto_Fi = document.createTextNode(`${total[i]}`)
+          fi.push(total[i])
           var texto_Fac = document.createTextNode(`${con[i]}`)
+          var andar = con[i]
           var texto_Fac_ = document.createTextNode(`${Math.floor(con[i] * 100 / aux)} %`)
 
         document.getElementById('ordenar').innerHTML = 'ID'
@@ -496,16 +512,15 @@ function Dados(){
         corpo_tabela.appendChild(linha)
 
         if(Math.floor(con[i] * 100 / aux) == 100){
+          mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total)
           break
         }
       }
-      //mediana(nomesVetor, occurrences)
-      media(occurrences, nomesVetor, respostas, contar)
       graficoContinuo(calc, respostas, nome, ajd, lin)
+      moda(fi,nomesVetor[0])
     }
     calcular()
   }
-   
 }
 
 
@@ -829,147 +844,343 @@ function moveLinhas(nLinha, direcao, botao){
   
 } 
 
-/*
-function mediana(nomesVetor, num, occurrences){
+function mediana(nomesVetor, occurrences){
   let aux = 0
   let vetor = []
   for(x in nomesVetor[0]){
     aux += occurrences[nomesVetor[0][x]]
     vetor[x] = aux
   }
-  var metade = aux / 2
-console.log('mediana metade = ' + metade)
+  let metade = aux / 2
 
-  var encontrar = " "
-  var vet = 0
-  var veto = 0
-  var manipular = 0
-  for(var i = 0; i < nomesVetor[0].length; i++){
-    if(Math.round(metade) % 2 != 0){
-      if(Math.round(metade) <= occurrences[nomesVetor[0][i]]){
-        vet = nomesVetor[0][i]
-        encontrar = 'impar'
-        manipular = 1
-        document.getElementById('median').innerHTML = vet
-        break
+  let verificacao
+  for(y in nomesVetor[0]){
+    if((metade < vetor[y])&&(metade+1 < vetor[y])){
+      verificacao = y
+    }
+    if(metade < vetor[y]){
+      verificacao = y
+    }
+  }
+  console.log('metade = ' + verificacao + ' aux = ' + aux)
+  if(aux % 2 != 0){
+    document.getElementById('median').innerHTML = nomesVetor[0][Math.round(verificacao -1)]
+    console.log(Math.round(verificacao))
+  }else {
+    if(nomesVetor[0][verificacao] != nomesVetor[0][verificacao + 1] ){
+
+      document.getElementById('median').innerHTML = nomesVetor[0][verificacao -1] + " e " + nomesVetor[0][verificacao]
+    } else {
+      document.getElementById('median').innerHTML = nomesVetor[0][verificacao - 1]
+    }
+    
+  }
+
+}
+
+
+//=============================================MÉIDA/MODA/MEDIANA========================================//
+//Média==================================================================================================//
+function media(dados) {
+    if(document.getElementById('s1').value == 'Qualitativa Nominal' || document.getElementById('s1').value == 'Qualitativa Ordinal'){
+      document.getElementById('media').innerHTML = 'Média = Não existe média de variaveis QUALITATIVAS!'
+    } else {
+      for(var i = 0;i < dados.length;i++){
+        if(dados[i] == ""){
+          dados.splice(0,1)
+        }
       }
-    } else{
-      if((metade <= occurrences[nomesVetor[0][i]])&&(metade + 1 <= occurrences[nomesVetor[0][i]])){
-        vet = (nomesVetor[0][i])
-        encontrar = 'par_um'
-        manipular = 1
-        document.getElementById('median').innerHTML = vet
-        break
-      } else if(metade == occurrences[nomesVetor[0][i]]){
-        vet = nomesVetor[0][i]
-        i ++
-        veto = nomesVetor[0][i]
-        manipular = 1
-        document.getElementById('median').innerHTML = vet + ' e ' + veto
-        encontrar = 'par_dois'
+      var media = 0
+      var soma = Number(dados[0])
+      for(var i = 1;i < dados.length;i++){
+        soma = soma + Number(dados[i])
+        console.log(`soma: >>> ${soma}`)
+      }
+      media = soma / dados.length
+      console.log(`>>>${media.toFixed(2)}`)
+      document.getElementById('media').innerHTML = `Média = ${media.toFixed(2)}`
+    }
+}
+
+function mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total){
+  var variavel = document.querySelectorAll('td')
+  var valores = []
+  var valorFi = []
+  for(var i = 1;i < variavel.length;i = i+6 ){
+    valores.push(variavel[i].innerText)
+  }
+  for(var i = 2;i < variavel.length;i = i+6 ){
+    valorFi.push(variavel[i].innerText)
+  }
+  console.log(variavel.length)
+  console.log(`${valores}`)
+  var vetorValores  = []
+  for(var j = 0;j < valores.length;j++){
+    valores[j] = valores[j].replaceAll("|-" , ";")
+    vetorValores[j] = valores[j].split(";")
+  }
+
+  var soma = []
+  var somaFinal = 0
+  for(var i = 0; i <vetorValores.length;i++){
+    console.log(`>>>${i}`)
+    soma.push(((Number(vetorValores[i][0]) + Number(vetorValores[i][1])) / 2) * valorFi[i])
+    somaFinal += soma[i]
+  }
+
+  console.log("SOMA >>> " + soma)
+  console.log("SOMA FIM >>> " + somaFinal)
+
+  console.log("CONT >>> " + andar)
+  console.log("RESULTADO >>> " + somaFinal/andar)
+  document.getElementById('media').innerHTML = `Média = ${(somaFinal / andar).toFixed(2)}`
+
+  var aux = 0
+  for(i in nomesVetor[0]){
+    aux += occurrences[nomesVetor[0][i]]
+    
+  }
+
+  console.log('AUX >>> >>>' + aux)
+  console.log('CON >>> ' + con)
+  console.log('Lin >>> ' + lin)
+  console.log('M >>>> ' + m)
+  var meio = aux/2
+
+  if(aux % 2 != 0 ){
+    console.log('MEIO >>> ' + Math.ceil(meio))
+    for(j in nomesVetor[0]){
+
+      if((meio >= m[j]) && (meio < m[j] + lin)){ 
+        if(j == 0){
+          var conta = meio - con[j]
+        } else{
+          var conta = meio - con[j-1]
+        }
+        
+        console.log('Conta >>> ' + conta)
+        console.log('Meio >>>>>' + meio)
+        conta = conta/ total[j]
+        conta = conta * lin
+        
+        console.log('Media >>> ' + m[j])
+        document.getElementById('mediana').innerHTML = `Mediana = ${m[j] + conta}`
         break
       }
     }
-      console.log('Vetor = ' + vet + ' vet1 ' + veto + ' encontrar ' + encontrar)
-  }
-
-  if (encontrar == 'par_dois'){
-    
-  } else if( encontrar == 'par_um'){
-    
+    //document.getElementById('mediana').innerHTML = `Mediana = ${vetorValores[Math.ceil(meio) - 1][0]} -| ${vetorValores[Math.ceil(meio) - 1][1]}`
   } else {
-   
+    for(j in nomesVetor[0]){
+      if((meio >= m[j]) && (meio < m[j] + lin)){
+        if(j == 0){
+          var conta = meio - con[j]
+        } else{
+          var conta = meio - con[j - 1]
+        }
+        
+        conta = conta/ total[j]
+        conta = conta * lin
+        console.log('Conta >>> ' + conta)
+        console.log('Media >>> ' + m[j])
+        if((meio + 1 >= m[j]) && (meio + 1 < m[j] + lin)){
+          document.getElementById('mediana').innerHTML = `Mediana = ${m[j] + conta}`
+          break
+        } else{
+          document.getElementById('mediana').innerHTML = `Mediana  = ${m[j] + conta} e ${m[j]+lin+conta}`
+          break
+        }
+        
+      }
+    }
+    
   }
 
+  // moda
 
+  var moda = 0
+    for(i in nomesVetor[0]){
+        if(parseFloat(occurrences[nomesVetor[0][i]]) > moda){
+            moda = parseFloat(occurrences[nomesVetor[0][i]])
+        }
+    }
+    console.log("MODA >>>>>>> " + moda)
+    var nomes = []   
+    for(i in nomesVetor[0]){
+      if(moda == parseFloat(occurrences[nomesVetor[0][i]])){
+        nomes.push(nomesVetor[0][i])
+      }
+    }
+
+    document.getElementById('moda').innerHTML = `Moda = ${nomes}`
+
+    console.log('MODA >>> ' + nomes)
+
+  }
+//Moda=====================================================================================================//
+
+function moda (fi,nomeDados) {
+  
+  if(document.getElementById('s1').value != 'Quantitativa Contínua'){
+    var moda = fi[fi.length -1]
+    for(var i = fi.length-1; i >= 0;i--){
+      if(fi[i] > moda){
+        moda = fi[i]
+      }
+    }
+
+
+  console.log(`>> fi${fi}`)
+  console.log(`>>>MODA ${moda}`)
+  var indices = []
+  var idx = fi.indexOf(Number(moda))
+  while (idx != -1) {
+    indices.push(idx);
+    idx = fi.indexOf(moda, idx + 1);
+  }
+  var cont = 0
+  for(var i = 0;i <fi.length;i++){
+    if(fi[i] == moda){
+      cont++
+    }
+  }
+  if(cont == fi.length){
+    document.getElementById('moda').innerHTML = 'Moda = Não Existe Moda'
+  } else {
+    var nomes = []
+    for(var i = 0;i < indices.length;i++){
+      nomes.push(nomeDados[indices[i]])
+    }
+    document.getElementById('moda').innerHTML = `Moda = ${nomes}`
+
+  }
+  console.log(indices)
+  console.log(nomeDados)
+  }
 
 }
-*/
 
-function media(occurrences, nomesVetor, respostas, contar){
-  // média discreta
-  if(document.getElementById('s1').value == 'Quantitativa Discreta'){
-    var acm = 0
-    var calculo = 0
-    for(i in nomesVetor[0]){
-      acm += parseFloat(occurrences[nomesVetor[0][i]])
-      calculo += parseFloat(occurrences[nomesVetor[0][i]]) * parseFloat(nomesVetor[0][i])
+//mediana=================================================================================================
+function mediana(dados) {
+  if(dados.length % 2 != 0 ){
+    var meio = dados.length / 2
+    console.log(Math.ceil(meio))
+    document.getElementById('mediana').innerHTML = `Mediana = ${dados[Math.ceil(meio) - 1]}`
+  } else {
+    var meio = dados.length / 2
+    document.getElementById('mediana').innerHTML = `Mediana  = ${dados[meio-1]},${dados[meio]}`
+  }
+}
+
+//SEPARATRIZES===========================================================================================
+
+
+function separatrizes(dados,fi){
+  if(document.getElementById('main_menu').value === 'nenhuma'){
+    document.getElementById('separatriz').innerHTML = 'Separatriz = Nenhuma'
+  }
+  var vQuartil = [1,25,50,75,100]
+  var vQuintil = [1,20,40,60,80,100]
+  var vDecil = [1,10,20,30,40,50,60,70,80,90,100]
+  var valores = document.querySelectorAll('td')
+  if(document.getElementById('main_menu').value == 'quartil'){
+    var total = Number(valores[valores.length - 2].innerText)
+    var valor = Number(document.getElementById('sub_menu').value)
+    var resposta = (total/100)*vQuartil[valor]
+    console.log(`>>>>>>>>>RESPOSTA${resposta}`)
+    for(var i = 0;i < fi.length;i++){
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i -1]}`
+        break
+      }
+      if(resposta == fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
+      }
+      
+      if(resposta > fi[i] && resposta < fi[i + 1]){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i + 1]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i - 1]}`
+        break
+      }
+    }
+  }
+
+  if(document.getElementById('main_menu').value == 'quintil'){
+    var total = Number(valores[valores.length - 2].innerText)
+    var valor = Number(document.getElementById('sub_menu').value)
+    var resposta = (total/100)*vQuintil[valor]
+    console.log(`>>>>>>>>>RESPOSTA${resposta}`)
+    for(var i = 0;i < fi.length;i++){
+      if(resposta == fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
+      }
+      if(resposta > fi[i] && resposta < fi[i + 1]){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i + 1]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i - 1]}`
+        break
+      }
+    }
+  }
+
+  if(document.getElementById('main_menu').value == 'decil'){
+    var total = Number(valores[valores.length - 2].innerText)
+    var valor = Number(document.getElementById('sub_menu').value)
+    var resposta = (total/100)*vDecil[valor]
+    console.log(`>>>>>>>>>RESPOSTA${resposta}`)
+    for(var i = 0;i < fi.length;i++){
+      if(resposta == fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i - 1]}`
+        break
+      }
+      if(resposta > fi[i] && resposta < fi[i + 1]){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i + 1]}`
+        break
+      }
       
     }
+  }
   
-    console.log('acm = ' + acm)    
-    console.log('calculo = ' + calculo)
-    var media = calculo / acm
-    document.getElementById('media').innerHTML = "Média: " + media
-  }
-    
-
-    // Aqui precisa fazer um if para separar a média da descritiva com a continua.
-    // média continua
-    if(document.getElementById('s1').value == 'Quantitativa Contínua'){
-      var acm = 0
-      var calculo = 0
-      for(i in nomesVetor[0]){
-        acm += parseFloat(occurrences[nomesVetor[0][i]])
-        calculo += contar[i]/2
-        console.log(calculo)
+  if(document.getElementById('main_menu').value == 'porcentil'){
+    var total = Number(valores[valores.length - 2].innerText)
+    var valor = Number(document.getElementById('sub_menu').value)
+    var resposta = (total/100) * valor
+    console.log(`>>>>>>>>>RESPOSTA${resposta}`)
+    for(var i = 0;i < fi.length;i++){
+      if(resposta == fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
       }
-      console.log('Calcú = ' + calculo + ' acm ' + acm)
-      media = calculo/acm
-      console.log(media)
-      document.getElementById('media').innerHTML = "Média: " + media
-    
-    }
-
-
-}
-/*
-function moda(nomesVetor) {
-  const vetor = {}
-  
-  nomesVetor.forEach(a => {
-    if (!(a in vetor)) {
-      vetor[a] = 0
-    }
-
-    vetor[a]++
-  })
-
-  let mode
-  let streak = 0
-
-  Object.entries(vetor).forEach(([b, c]) => {
-    if (c > streak) {
-      mode = b
-      streak = c
-    }
-  })
-}
-console.log(moda(nomesVetor))
-*/
-function moda(nomesVetor, occurrences){
-  let vetor_base = []
-  var ultimo = occurrences[nomesVetor[0][0]]
-  for(x in nomesVetor[0]){
-    if(ultimo <= occurrences[nomesVetor[0][x]]){
-      ultimo = occurrences[nomesVetor[0][x]]
-    }
-  }
-  console.log('ultimo == ' + ultimo)
-
-  for(let i = nomesVetor[0].length-1; i > -1; i--){
-    if(ultimo == occurrences[nomesVetor[0][i]]){
-      vetor_base[i] = (nomesVetor[0][i])
-      } else if(ultimo < occurrences[nomesVetor[0][i]]){
-        for(let j = i; j > 0; j--){
-          vetor_base[j] = 0
-        }
-        vetor_base = nomesVetor[0][i]
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`
+        break
       }
-      console.log("I = " + i)
-      console.log('ultimo = ' + vetor_base[i])
+      if(resposta > fi[i] && resposta < fi[i + 1]){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i + 1]}`
+        break
+      }
+      if(resposta < fi[i] ){
+        document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i - 1]}`
+        break
+      }
     }
-    
-      document.getElementById('moda').innerHTML = vetor_base
-    
   }
+}

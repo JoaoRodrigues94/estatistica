@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src='app.js'></script>
+	<script src='app.js'></script>
 	<title>Grupo 3</title>
-
 	<!--Gráfico-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -42,7 +41,7 @@
 		<div class="col-md-12">
 			<h1 class="text-center">Estatísticas - Grupo 3</h1>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12"> 
 			<form>
 				<div class="form-group">
 					<label for="dados">Entrada de dados, utilize ';' para separar os dados.</label>
@@ -84,6 +83,28 @@
 				        </option>
 				    </select>
 				</div>
+				<div class="container mt- 5">
+					<div class="row">
+						<div class="col-md-3">
+							<h5>Separatrizes</h5>
+						</div>
+						<div class="col-md-3">
+							<select name = 'separatriz' id ='main_menu' class = "custom-select">
+								<option value="nenhuma">Nenhuma</option>
+								<option value="quartil">Quartil</option>
+								<option value="quintil">Quintil</option>
+								<option value="decil">Decil</option>
+								<option value="porcentil">Porcentil</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select name = 'numbers' id ='sub_menu' class = "custom-select">
+								
+							</select>
+						</div>
+					</div>
+
+				</div>
 			</form>
 		</div>
 		<div class="col-md-12">
@@ -93,20 +114,16 @@
 			<table class="table table-bordered">
 			    <thead>
 			        <tr>
-						<th id='ordenar'></th>
-			            <th id="col"></th>
-			            <th id='fi'></th>
-			            <th id='fr'></th>
-			            <th id='fac'></th>
-			            <th id='fac_'></th>
+			            
 			        </tr>   
 			    </thead>
 			    <tbody id="sortable" ui-sortable="" ng-model="conjunto">
 
 			    </tbody>
 			</table>
-			<p>Para organizar a tabela, clique em cima da linha deseja e arreste para onde quiser.</p>
+			
 		</div>
+
 	</div>
 	<figure class="highcharts-figure">
 		<div id="container"></div>
@@ -118,12 +135,15 @@
 			<button id="polar">Polar</button>
 		</div>
 
+		<div>
+			<h3 id = 'moda'> </h3>
+			<h3 id = 'media'> </h3>
+			<h3 id = 'mediana'> </h3>
+			<h3 id = 'separatriz'> </h3>
+		</div>
+
 	  </figure>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	<div class="media-content" onload="mediana()">
-		<p>
-			Mediana: <label id="median"></label>
-		</p>
-	</div>
+	<script src='box.js'></script>
 </body>
 </html>
