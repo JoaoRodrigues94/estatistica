@@ -1068,8 +1068,9 @@ function medianaContinua(fi, m, lin, con){
     }
     if(fant != fant2)
     {
+      console.log('FANT2 >>>>' + fant2)
       var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
-      var calcula2 = m[fant2+1] + (((median - con[fant2])/ fi[fant2]) * lin)
+      var calcula2 = m[fant2] + (((median - con[fant2])/ fi[fant2]) * lin)
       document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2) + ' e ' + calcula2.toFixed(2)
     }
   }
@@ -1089,6 +1090,53 @@ function medianaContinua(fi, m, lin, con){
     var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
     document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
   }
+
+
+
+/*
+  var median = med / 2
+  var fac = 0
+  var fsimples = 0
+  var x = 0
+
+  for(i in fi)
+  {
+    console.log('VALOR DE FI >>> >>>> ' + i)
+    if(i == 0)
+    {
+      fsimples = fi[i]
+      facAnterior[i] = 0
+    }
+    else{
+      fsimples = fi[i]
+    }
+
+    if(((median >= facAnterior[i])||(median <= facAnterior[i])) && (median < facAnterior[i + 1]))
+    {
+      console.log(facAnterior[i] + ' e ' + facAnterior[i+1])
+      if(i == 0)
+      {
+        fac = m[i]
+        x = i
+      }
+      else
+      {
+        fac = m[i+1]
+        x = i - 1
+      }
+      console.log('FAC ANTERIOR >>>> ' + x)
+    break
+    }
+    else
+    {
+      console.log('Ainda naõ ')
+    }
+  }
+  console.log("MEDIAN - FANT = " + median + ' - '+ facAnterior[x])
+  var calculo = fac + (((median - facAnterior[x])/ fsimples)* lin)
+  document.getElementById('mediana').innerHTML = 'Mediana = ' + calculo
+ */
+
 }
 
 function separatrizCont(porcentil, m, fi, lin, con) {
