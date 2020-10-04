@@ -8,7 +8,7 @@ function Dados(){
             vetorDados[i] = vetorDados[i].trim()
         }
         vetorDados.sort()
-        console.log(vetorDados)
+        //console.log(vetorDados)
         var occurrences = {}
         var nomesVetor = []
         var frequency = []
@@ -17,12 +17,12 @@ function Dados(){
       
             } else {
               occurrences[vetorDados[i]] = (occurrences[vetorDados[i]] || 0) + 1;// esse algoritimo conta o numero de variaveis repetidas
-              console.log(occurrences)
+              //console.log(occurrences)
             }
         }
         nomesVetor.push(Object.keys(occurrences))//Esse push coloca os valores do objeto na matriz nomesVetor
         
-        console.log(nomesVetor[0])
+        //console.log(nomesVetor[0])
         const corpo_tabela = document.querySelector("tbody");
   
 
@@ -44,7 +44,7 @@ function Dados(){
         tableHead.appendChild(fac);
         tableHead.appendChild(fac_);
         let nome = document.getElementById('nome').value
-        console.log(nomesVetor)
+        //console.log(nomesVetor)
         //criação da tabela
         document.getElementById('col').innerHTML = nome
         document.getElementById('fi').innerHTML = 'Frequência Simples <br/> Fi'
@@ -57,7 +57,7 @@ function Dados(){
             let soma = []
             var valoresFi = []
             for (var i = 0; i < nomesVetor[0].length; i++) { //loop para criar a tabela com o tamanho da matriz nomesVetor
-              console.log(nomesVetor[0][i])
+              //console.log(nomesVetor[0][i])
               let aux = 0
               //criar elementos
               var texto_variavel = document.createTextNode(nomesVetor[0][i]) //cria um nó de texto com o nome das variaveis
@@ -112,9 +112,10 @@ function Dados(){
                 pie(nome, frequency, nomesVetor);
               }
             }
-              console.log(`>>>${valoresFi}`)
+              //console.log(`>>>${valoresFi}`)
               moda(valoresFi,nomesVetor[0])
               separatrizes(nomesVetor[0],con)
+              desvioPadrao(valoresFi, con, nomesVetor)
         }
         
         criarLinha()
@@ -132,7 +133,7 @@ function Dados(){
           vetorDados[i] =  vetorDados[i].trim()
         }
         vetorDados.sort()//Coloca o vetor em ordem alfabetica
-        console.log(vetorDados)
+        //console.log(vetorDados)
         var occurrences = {};//Obejto com o numero de elementos repetidos ex: preta:2 , branco:3 etc.
         var nomesVetor = []//Vetor com as variaveis sem repetição
         var frequency = []
@@ -141,7 +142,7 @@ function Dados(){
 
           } else {
             occurrences[vetorDados[i]] = (occurrences[vetorDados[i]] || 0) + 1;// esse algoritimo conta o numero de variaveis repetidas
-            console.log(occurrences)
+            //console.log(occurrences)
           }
         }
         nomesVetor.push(Object.keys(occurrences))//Esse push coloca os valores do objeto na matriz nomesVetor
@@ -170,7 +171,7 @@ function Dados(){
         
 
         let nome = document.getElementById('nome').value
-        console.log(nomesVetor)
+       // console.log(nomesVetor)
         document.getElementById('ordenar').innerHTML = 'Ordenar<br/>Linhas'
         document.getElementById('col').innerHTML = nome
         document.getElementById('fi').innerHTML = 'Frequência Simples <br/> Fi'
@@ -185,7 +186,7 @@ function Dados(){
           let soma = []
           var valoresFi = []
           for (var i = 0; i < nomesVetor[0].length; i++) { //loop para criar a tabela com o tamanho da matriz nomesVetor
-            console.log(nomesVetor[0][i])
+            //console.log(nomesVetor[0][i])
             let aux = 0
             //criar elementos
             var texto_variavel = document.createTextNode(nomesVetor[0][i])
@@ -276,12 +277,13 @@ function Dados(){
   if (document.getElementById('s1').value == 'Quantitativa Contínua') {
     var dados = document.getElementById('dados').value
     var vetorDados = dados.split(";")
+    var porcentil = []
     parseInt(vetorDados)
     for(var i = 0;i < vetorDados.length;i++){
       vetorDados[i] =  vetorDados[i].trim()
     }
     vetorDados.sort()
-    console.log(vetorDados)
+    //console.log(vetorDados)
     var occurrences = {};//Obejto com o numero de elementos repetidos ex: preta:2 , branco:3 etc.
     var nomesVetor = []//Vetor com as variaveis sem repetição
     for (var i = 0, j = vetorDados.length; i < j; i++) {
@@ -289,7 +291,7 @@ function Dados(){
 
       } else {
         occurrences[vetorDados[i]] = (occurrences[vetorDados[i]] || 0) + 1;// esse algoritimo conta o numero de variaveis repetidas
-        console.log(occurrences)
+        //console.log(occurrences)
       }
     }
     nomesVetor.push(Object.keys(occurrences))
@@ -315,7 +317,7 @@ function Dados(){
         tableHead.appendChild(fac);
         tableHead.appendChild(fac_);
         let nome = document.getElementById('nome').value
-        console.log(nomesVetor)
+        //console.log(nomesVetor)
     document.getElementById('fi').innerHTML = 'Frequência Simples <br/>(fi)'
     document.getElementById('fr').innerHTML = 'Fr %'
     document.getElementById('fac').innerHTML = 'Fac'
@@ -339,24 +341,24 @@ function Dados(){
         }
       }
       primeiro = posi
-      console.log(`primeiro ${primeiro}`)
+      //console.log(`primeiro ${primeiro}`)
       ultimo = pos
-      console.log(`Ultimo ${ultimo}`)
+      //console.log(`Ultimo ${ultimo}`)
       amplitude = Math.round(Math.sqrt(ultimo - primeiro))
-      console.log(`amplitude ${amplitude}`)
+      //console.log(`amplitude ${amplitude}`)
       var respostas = []
       let calc = []
       for (var i = parseInt(primeiro); i <= parseInt(ultimo); i = i + parseInt(amplitude)) {
-        console.log(i)
+        //console.log(i)
         respostas.push(i)
         cont++
 
       }
-      console.log(i)
+      //console.log(i)
       respostas.push(i)
-      console.log(respostas)
+      //console.log(respostas)
 
-      console.log(cont)
+      //console.log(cont)
 
 
 
@@ -408,8 +410,8 @@ function Dados(){
       for (var i = 0; i < cont; i++) {
         var linha = document.createElement("tr")
         var campo_variavel = document.createElement("td")
-        console.log('Raiz quadrada = ' + k)
-        console.log('Resulta = '+ resulta + ', lin =' + lin )
+        //console.log('Raiz quadrada = ' + k)
+        //console.log('Resulta = '+ resulta + ', lin =' + lin )
 
         let mais = 0
         for(let i = 0; i < cont; i++){
@@ -444,8 +446,8 @@ function Dados(){
           total[j] = 0
 
           for (let k = 0; k < nomesVetor[0].length; k++) {
-            console.log("nomes - " + nomesVetor[0][k])
-            console.log((m[j]) + " - " +m[j+1])
+            //console.log("nomes - " + nomesVetor[0][k])
+            //console.log((m[j]) + " - " +m[j+1])
             
             if ((parseFloat(nomesVetor[0][k]) < (m[j+1]) && (parseFloat(nomesVetor[0][k]) >= m[j]))) {
               total[j] += parseFloat(occurrences[nomesVetor[0][k]])
@@ -494,6 +496,7 @@ function Dados(){
           var texto_Fac = document.createTextNode(`${con[i]}`)
           var andar = con[i]
           var texto_Fac_ = document.createTextNode(`${Math.floor(con[i] * 100 / aux)} %`)
+          porcentil.push(Math.floor(con[i] * 100 / aux))
 
         document.getElementById('ordenar').innerHTML = 'ID'
         campo_ord.appendChild(texto_campo)
@@ -512,7 +515,9 @@ function Dados(){
         corpo_tabela.appendChild(linha)
 
         if(Math.floor(con[i] * 100 / aux) == 100){
-          mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total)
+          mediaContinua(nomesVetor,andar, occurrences,fi)
+          medianaContinua(fi, m, lin, con)
+          separatrizCont(porcentil, m, fi, lin, con)
           break
         }
       }
@@ -705,6 +710,8 @@ function graficoContinuo(calc, respostas, nome, ajd, lin) {
     },
     plotOptions: {
       series: {
+        pointPadding: 0.001,
+        groupPadding: 0.001,
         borderWidth: 0,
         dataLabels: {
           enabled: true,
@@ -878,7 +885,54 @@ function mediana(nomesVetor, occurrences){
 
 }
 
+function desvioPadrao(valoresFi, con, nomesVetor){
 
+
+  var media = 0
+  var cont = 0
+  for(i in nomesVetor[0])
+  {
+    media += nomesVetor[0][i] * valoresFi[i]
+    cont = i
+  }
+
+  
+  if(document.getElementById('s2').value == 'Amostra')
+  {
+    var fac = con[cont] - 1
+  } else {
+    var fac = con[cont]
+  }
+
+  console.log('var nocva ..... ' + fac)
+  media = media / fac 
+
+  //Segunda parte
+  var conta = 0
+  var aux = 0
+  for(i in nomesVetor[0])
+  {
+    conta = ((nomesVetor[0][i] - media) ** 2) *  valoresFi[i]
+    console.log("Conta " + conta)
+    aux += conta
+    cont = i
+  }
+
+  console.log('Conta >>>>>>> ' + aux)
+  var Raiz
+  Raiz = Math.sqrt(aux / fac)
+  var cv = (Raiz/media) * 100
+if((document.getElementById('s1').value == 'Qualitativa Nominal') || (document.getElementById('s1').value == 'Qualitativa Nominal'))
+{
+  document.getElementById('desvioPadrao').innerHTML = ""
+  document.getElementById('coeficiente').innerHTML =  ""
+}
+else
+{
+  document.getElementById('desvioPadrao').innerHTML = " Desvio Padrão = " + Raiz.toFixed(2)
+  document.getElementById('coeficiente').innerHTML = 'Coeficiente de Variação = ' + cv.toFixed(2) +  " %"
+}
+}
 //=============================================MÉIDA/MODA/MEDIANA========================================//
 //Média==================================================================================================//
 function media(dados) {
@@ -902,7 +956,7 @@ function media(dados) {
     }
 }
 
-function mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total){
+function mediaContinua(nomesVetor,andar, occurrences,fi){
   var variavel = document.querySelectorAll('td')
   var valores = []
   var valorFi = []
@@ -922,9 +976,11 @@ function mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total){
 
   var soma = []
   var somaFinal = 0
+  var desvio = []
   for(var i = 0; i <vetorValores.length;i++){
     console.log(`>>>${i}`)
     soma.push(((Number(vetorValores[i][0]) + Number(vetorValores[i][1])) / 2) * valorFi[i])
+    desvio.push(((Number(vetorValores[i][0]) + Number(vetorValores[i][1])) / 2))
     somaFinal += soma[i]
   }
 
@@ -933,69 +989,9 @@ function mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total){
 
   console.log("CONT >>> " + andar)
   console.log("RESULTADO >>> " + somaFinal/andar)
-  document.getElementById('media').innerHTML = `Média = ${(somaFinal / andar).toFixed(2)}`
+  document.getElementById('media').innerHTML = `Média = ${(somaFinal / andar).toFixed(2)}`  
+  var med = somaFinal / andar
 
-  var aux = 0
-  for(i in nomesVetor[0]){
-    aux += occurrences[nomesVetor[0][i]]
-    
-  }
-
-  console.log('AUX >>> >>>' + aux)
-  console.log('CON >>> ' + con)
-  console.log('Lin >>> ' + lin)
-  console.log('M >>>> ' + m)
-  var meio = aux/2
-
-  if(aux % 2 != 0 ){
-    console.log('MEIO >>> ' + Math.ceil(meio))
-    for(j in nomesVetor[0]){
-
-      if((meio >= m[j]) && (meio < m[j] + lin)){ 
-        if(j == 0){
-          var conta = meio - con[j]
-        } else{
-          var conta = meio - con[j-1]
-        }
-        
-        console.log('Conta >>> ' + conta)
-        console.log('Meio >>>>>' + meio)
-        conta = conta/ total[j]
-        conta = conta * lin
-        
-        console.log('Media >>> ' + m[j])
-        document.getElementById('mediana').innerHTML = `Mediana = ${m[j] + conta}`
-        break
-      }
-    }
-    //document.getElementById('mediana').innerHTML = `Mediana = ${vetorValores[Math.ceil(meio) - 1][0]} -| ${vetorValores[Math.ceil(meio) - 1][1]}`
-  } else {
-    for(j in nomesVetor[0]){
-      if((meio >= m[j]) && (meio < m[j] + lin)){
-        if(j == 0){
-          var conta = meio - con[j]
-        } else{
-          var conta = meio - con[j - 1]
-        }
-        
-        conta = conta/ total[j]
-        conta = conta * lin
-        console.log('Conta >>> ' + conta)
-        console.log('Media >>> ' + m[j])
-        if((meio + 1 >= m[j]) && (meio + 1 < m[j] + lin)){
-          document.getElementById('mediana').innerHTML = `Mediana = ${m[j] + conta}`
-          break
-        } else{
-          document.getElementById('mediana').innerHTML = `Mediana  = ${m[j] + conta} e ${m[j]+lin+conta}`
-          break
-        }
-        
-      }
-    }
-    
-  }
-
-  // moda
 
   var moda = 0
     for(i in nomesVetor[0]){
@@ -1012,10 +1008,190 @@ function mediaContinua(nomesVetor,andar, occurrences, lin, con, m, total){
     }
 
     document.getElementById('moda').innerHTML = `Moda = ${nomes}`
+    var freq = []
+    for(i in fi)
+    {
+      freq.push(fi[i])
+    }
+    desvioContinua(desvio, med, freq, andar)
 
-    console.log('MODA >>> ' + nomes)
+  } 
 
+
+function medianaContinua(fi, m, lin, con){
+  var med = 0 
+  var facAnterior = []
+  for(i in fi)
+  {
+    console.log('VAlor da mediana >>>>> ' + fi[i])
+    med += fi[i]
+    facAnterior.push(med)
   }
+
+  var media = med / 2
+  console.log('MEDIA >>>> ' + media)
+  var comp = 0
+  var j = 0
+  var fant
+  var fant2
+  if(med % 2 == 0)
+  {
+    for(var i = 0; i < fi.length; i++){
+      if((media > comp)&&(media <= con[j]))
+      {
+        fant= i
+        console.log('POSIÇAO >>> >>>> '+ i)
+      } 
+      comp = con[i]
+      j = i+1
+      console.log('Valor de I = ' + i)
+      console.log(comp +" " + con[j])
+    }
+
+    median = media + 1
+    for(var i = 0; i < fi.length; i++){
+      if((median > comp)&&(median <= con[j]))
+      {
+        fant2= i
+        console.log('POSIÇAO 2 >>> >>>> '+ i)
+      } 
+      comp = con[i]
+      j = i+1
+      console.log('Valor de I = ' + i)
+      console.log(comp +" " + con[j])
+    }
+    
+    if(fant == fant2)
+    {
+      var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
+      document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
+    }
+    if(fant != fant2)
+    {
+      var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
+      var calcula2 = m[fant2+1] + (((median - con[fant2])/ fi[fant2]) * lin)
+      document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2) + ' e ' + calcula2.toFixed(2)
+    }
+  }
+  else
+  {
+    for(var i = 0; i < fi.length; i++){
+      if((media > comp)&&(media <= con[j]))
+      {
+        fant= i
+        console.log('POSIÇAO >>> >>>> '+ i)
+      } 
+      comp = con[i]
+      j = i+1
+      console.log('Valor de I = ' + i)
+      console.log(comp +" " + con[j])
+    }
+    var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
+    document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
+  }
+}
+
+function separatrizCont(porcentil, m, fi, lin, con) {
+var mult = 0
+
+if(document.getElementById('main_menu').value == 'quartil')
+{
+  mult = 25
+}
+
+else if(document.getElementById('main_menu').value == 'quintil')
+{
+  mult = 20
+}
+
+else if(document.getElementById('main_menu').value == 'decil')
+{
+  mult = 10
+}
+
+else if(document.getElementById('main_menu').value == 'porcentil')
+{
+  mult = 1
+}
+
+else
+{
+  mult = 0
+}
+
+// Esses if em cima defini a porcentagem que deverá ser multiplicada.
+var fac = 0
+for(let i = 0; i < porcentil.length; i++){
+  fac += fi[i]
+}
+mult = (document.getElementById('sub_menu').value* mult)
+mult *= fac
+mult = mult/100
+console.log('ANDA >>>> ' + mult)
+
+var conta = 0
+
+
+for(let i = 0; i < porcentil.length - 1; i++) {
+  console.log("MULT >>>> " + i)
+
+  if(porcentil[i + 1] === 100){
+    porcentil[i + 1] = 101
+  }
+  else if(i === 0)
+  {
+    porcentil[i] = 0
+  }
+ // if em cima serve para tratar alguns problemas
+
+  console.log('Porcetil >>>>' + porcentil[i] + ' E Porcentil2 >>>> ' + porcentil[i + 1])
+  if(((mult >= porcentil[i])||(mult <= porcentil[i])) && (mult < porcentil[i + 1]))
+  {
+    if(i === 0){
+      i = 1
+    }
+    
+    console.log('VAlor de soma >>>> ' + m[i])
+    console.log('MULT >>>> ' + mult)
+    console.log('CON >>>> ' + con[i-1])
+    console.log('FI >>>> ' + fi[i])
+    console.log('LINHA >>>> ' + lin)
+    conta = m[i] + (((mult - con[i-1]) / fi[i]) * lin)
+    break
+  }
+  
+  console.log("CONTA >>>" + conta)
+}
+
+document.getElementById('separatriz').innerHTML = "Separatriz = " + conta.toFixed(2)
+}
+
+function desvioContinua(desvio, med, freq, andar){
+  var calc = 0
+  var x = 0
+  if(document.getElementById('s2').value == 'Amostra')
+  {
+    med = med - 1
+  }
+
+  console.log('PROVA >>> >>>> >>>> ' + med)
+  for(i in desvio)
+  {
+    console.log(desvio[i] + ' - ' + med)
+    calc = (desvio[i] - med) * (desvio[i] - med)
+    calc = freq[i] * calc
+    x += calc
+  }
+
+  x = x/andar
+
+  var res = Math.sqrt(x)
+  var cv = (res/med) * 100
+
+  document.getElementById('desvioPadrao').innerHTML = 'Desvio Padrão = ' + res.toFixed(2)
+  document.getElementById('coeficiente').innerHTML = 'Coeficiente de Variação = ' + cv.toFixed(0) + '%'
+
+}
 //Moda=====================================================================================================//
 
 function moda (fi,nomeDados) {
@@ -1072,7 +1248,6 @@ function mediana(dados) {
 }
 
 //SEPARATRIZES===========================================================================================
-
 
 function separatrizes(dados,fi){
   if(document.getElementById('main_menu').value === 'nenhuma'){
@@ -1163,7 +1338,7 @@ function separatrizes(dados,fi){
     var total = Number(valores[valores.length - 2].innerText)
     var valor = Number(document.getElementById('sub_menu').value)
     var resposta = (total/100) * valor
-    console.log(`>>>>>>>>>RESPOSTA${resposta}`)
+    //console.log(`>>>>>>>>>RESPOSTA${resposta}`)
     for(var i = 0;i < fi.length;i++){
       if(resposta == fi[i] ){
         document.getElementById('separatriz').innerHTML = `Separatriz = ${dados[i]}`

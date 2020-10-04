@@ -58,6 +58,8 @@
 				<div class="form-group">
 					<label for="dados">Especifique se a variável é uma amostra ou uma população.</label>
 				</div>
+				<div class='variacao' id='variacao'>
+				<!--<select class="custom-select" id='s2'>
 				<div class="form-group form-radio">
 					<input type="radio" class="form-radio-input" id="amostra" name="variavel">
 					<label class="form-radio-label" for="amostra">Amostra</label>
@@ -66,6 +68,19 @@
 					<input type="radio" class="form-radio-input" id="populacao" name="variavel">
 					<label class="form-radio-label" for="populacao">População</label>
 				</div>
+				</select> -->
+				<div class="form-group">
+					<label for="dados">Especifique se é uma Amostra ou População:</label>
+					<select class="custom-select" id='s2'>
+				        <option>
+				            Amostra
+				        </option>
+				        <option>
+				            População
+				        </option>
+				    </select>
+				</div>
+			</div>
 				<div class="form-group">
 					<label for="dados">Selecione uma Variável:</label>
 					<select class="custom-select" id='s1'>
@@ -136,10 +151,12 @@
 		</div>
 
 		<div>
-			<h3 id = 'moda'> </h3>
-			<h3 id = 'media'> </h3>
-			<h3 id = 'mediana'> </h3>
-			<h3 id = 'separatriz'> </h3>
+			<h3 class="mtp col m12 l12" id = 'moda'> </h3>
+			<h3 class="mtp col m12 l12" id = 'media'> </h3>
+			<h3 class="mtp col m12 l12" id = 'mediana'> </h3>
+			<h3 class="mtp col m12 l12" id = 'separatriz'> </h3>
+			<h3 class="mtp col m12 l12" id = 'desvioPadrao'></h3>
+			<h3 class="mtp col m12 l12" id = "coeficiente"></h3>
 		</div>
 
 	  </figure>
