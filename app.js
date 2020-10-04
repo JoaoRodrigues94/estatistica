@@ -1049,6 +1049,8 @@ function medianaContinua(fi, m, lin, con){
     }
 
     median = media + 1
+    comp = 0
+    j = 0
     for(var i = 0; i < fi.length; i++){
       if((median > comp)&&(median <= con[j]))
       {
@@ -1061,15 +1063,23 @@ function medianaContinua(fi, m, lin, con){
       console.log(comp +" " + con[j])
     }
     
+    if(fant == 0)
+    {
+      var x = 1
+    }
+    else{
+      var x = fant
+    }
+
     if(fant == fant2)
     {
-      var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
+      var calcula = m[fant] + (((media - con[x-1])/ fi[fant]) * lin)
       document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
     }
     if(fant != fant2)
     {
       console.log('FANT2 >>>>' + fant2)
-      var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
+      var calcula = m[fant] + (((media - con[x-1])/ fi[fant]) * lin)
       var calcula2 = m[fant2] + (((median - con[fant2])/ fi[fant2]) * lin)
       document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2) + ' e ' + calcula2.toFixed(2)
     }
@@ -1087,56 +1097,18 @@ function medianaContinua(fi, m, lin, con){
       console.log('Valor de I = ' + i)
       console.log(comp +" " + con[j])
     }
-    var calcula = m[fant] + (((media - con[fant-1])/ fi[fant]) * lin)
-    document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
-  }
 
-
-
-/*
-  var median = med / 2
-  var fac = 0
-  var fsimples = 0
-  var x = 0
-
-  for(i in fi)
-  {
-    console.log('VALOR DE FI >>> >>>> ' + i)
-    if(i == 0)
+    if(fant == 0)
     {
-      fsimples = fi[i]
-      facAnterior[i] = 0
+      var x = 1
     }
     else{
-      fsimples = fi[i]
+      var x = fant
     }
 
-    if(((median >= facAnterior[i])||(median <= facAnterior[i])) && (median < facAnterior[i + 1]))
-    {
-      console.log(facAnterior[i] + ' e ' + facAnterior[i+1])
-      if(i == 0)
-      {
-        fac = m[i]
-        x = i
-      }
-      else
-      {
-        fac = m[i+1]
-        x = i - 1
-      }
-      console.log('FAC ANTERIOR >>>> ' + x)
-    break
-    }
-    else
-    {
-      console.log('Ainda naõ ')
-    }
+    var calcula = m[fant] + (((media - con[x-1])/ fi[fant]) * lin)
+    document.getElementById('mediana').innerHTML = 'Mediana = ' + calcula.toFixed(2)
   }
-  console.log("MEDIAN - FANT = " + median + ' - '+ facAnterior[x])
-  var calculo = fac + (((median - facAnterior[x])/ fsimples)* lin)
-  document.getElementById('mediana').innerHTML = 'Mediana = ' + calculo
- */
-
 }
 
 function separatrizCont(porcentil, m, fi, lin, con) {
