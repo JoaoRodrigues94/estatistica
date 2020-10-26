@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
 	<script src='app.js'></script>
@@ -25,6 +25,10 @@
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+	<link rel="shortcut icon" href="/public/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/page-landing.css">
+
     <style>
         .grafico{
             visibility: hidden;
@@ -39,10 +43,32 @@
 <body class="container-fluid" ng-controller="listagemIndexControl">
 	<div class="container">
 		<div class="col-md-12">
+			<div class="titlecontainer">
 			<h1 class="text-center">Estatísticas - Grupo 3</h1>
+			</div>
 		</div>
 		<div class="col-md-12"> 
 			<form>
+				<table>
+					<thead>
+						<tr>
+							<div class="buttoncontainer">
+								<a class="binomial-page" href="./index.html">
+									Descritiva
+								</a>
+							</div>
+						</tr>
+						<tr>
+							<div class="buttoncontainer">
+								<a class="binomial-page" href="./binomial.html">
+									Probabilidade
+								</a>
+							</div>
+						</tr>
+					</thead>
+				</table>
+				
+				<div class="bigcontainer">		
 				<div class="form-group">
 					<label for="dados">Entrada de dados, utilize ';' para separar os dados.</label>
 					<input type="text" class="form-control" id="dados">
@@ -59,16 +85,6 @@
 					<label for="dados">Especifique se a variável é uma amostra ou uma população.</label>
 				</div>
 				<div class='variacao' id='variacao'>
-				<!--<select class="custom-select" id='s2'>
-				<div class="form-group form-radio">
-					<input type="radio" class="form-radio-input" id="amostra" name="variavel">
-					<label class="form-radio-label" for="amostra">Amostra</label>
-				</div>
-				<div class="form-group form-radio">
-					<input type="radio" class="form-radio-input" id="populacao" name="variavel">
-					<label class="form-radio-label" for="populacao">População</label>
-				</div>
-				</select> -->
 				<div class="form-group">
 					<label for="dados">Especifique se é uma Amostra ou População:</label>
 					<select class="custom-select" id='s2'>
@@ -118,14 +134,14 @@
 							</select>
 						</div>
 					</div>
-
+					<div><br></div>
 				</div>
 			</form>
 		</div>
-		<div class="col-md-12">
+		<div class="form-group col-md-12">
 			<button class="btn btn-primary btn-block" onclick="Dados()">Calcular</button>
 		</div>
-		<div class="col-md-12" ng-app="listagemIndex" ng-controller="listagemIndexControl">
+		<div class="container mt- 5 col-md-12" ng-app="listagemIndex" ng-controller="listagemIndexControl">
 			<table class="table table-bordered">
 			    <thead>
 			        <tr>
@@ -150,16 +166,16 @@
 			<button id="polar">Polar</button>
 		</div>
 
-		<div>
-			<h3 class="mtp col m12 l12" id = 'moda'> </h3>
-			<h3 class="mtp col m12 l12" id = 'media'> </h3>
-			<h3 class="mtp col m12 l12" id = 'mediana'> </h3>
-			<h3 class="mtp col m12 l12" id = 'separatriz'> </h3>
-			<h3 class="mtp col m12 l12" id = 'desvioPadrao'></h3>
-			<h3 class="mtp col m12 l12" id = "coeficiente"></h3>
+		<div class="mtp col m12 l12">
+			<h3 id = 'moda'> </h3>
+			<h3 id = 'media'> </h3>
+			<h3 id = 'mediana'> </h3>
+			<h3 id = 'separatriz'> </h3>
+			<h3 id = 'desvioPadrao'></h3>
+			<h3 id = "coeficiente"></h3>
 		</div>
-
 	  </figure>
+	</div>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	<script src='box.js'></script>
 </body>

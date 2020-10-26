@@ -1379,3 +1379,7 @@ function separatrizes(dados,fi){
     }
   }
 }
+
+function Visualizar(){
+  document.getElementById("Descritiva").style = 'display: block;'
+}

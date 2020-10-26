@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="binomial.js"></script>
+    <link rel="stylesheet" href="binomial.css"></link>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Binomial</title>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    <div class="buttoncontainer">
+                        <a class="binomial-page" href="./index.html">
+                            Descritiva
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="buttoncontainer">
+                        <a class="binomial-page" href="./binomial.html">
+                            Probabilidade
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+    </table>
+</head>
+<body>
+    <div class="bigcontainer">
+    <p>
+        <div class="input-field">
+            <label for="Amostra"> <p> Quantidade da Amostra </p></label>
+            <input type="number" name="Amostra" id="Amostra">
+    </div>
+        <div class="input-field">
+            <label for="Sucesso"> <p> Taxa de Sucesso (P) - "0 - 100" </p></label>
+            <input type="nu </p>mber" name="Sucesso" id="Sucesso">
+        </div>
+        <div class="input-field">
+            <label for="Fracasso"> <p> Taxa de Fracasso (Q) - "0 - 100" </p></label>
+            <input type="number" name="Fracasso" id="Fracasso">
+        </div>
+        <div class="input-field">
+            <label for="Evento"> <p> Informe os Eventos separados por ";" </p></label>
+            <input type="text" name="Evento" id="Evento">
+        </div>
+        <div class="input-field">
+            <button class="buttoncontainer" onclick="Binomial()">Calcular</button>
+        </div>
+        <div class="mtp col m12 l12">
+            <h3 id="Resultado"></h3>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src='box.js'></script>
+    </div>
+
+    </p>
+</body>
+</html>
