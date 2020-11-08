@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <script src="binomial.js"></script>
+    <script src="normal.js"></script>
     <link rel="stylesheet" href="binomial.css"></link>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <title>Estátistica Grupo 3</title>
 </head>
 <body>
-
-    <div class="buttoncontainer">
+      <div class="buttoncontainer" >
         <a class="index-page" href="./index.html">
             Descritiva
         </a>
@@ -17,35 +17,39 @@
             Probabilidade
         </a>
     </div>
-    <div class="bigcontainer" id="Binomial" >
-        <div class="input-fiel">
-            <h2>Binomial</h2>
+    <div class="bigcontainer" id="Binomial" style="margin-left: 151px;" >
+        <div class="box" >
+            <div class="input-fiel">
+                <h2>Binomial</h2>
+            </div>
+            <div class="input-field">
+                <label for="Amostra"><p> Quantidade da Amostra </p></label>
+                <input type="number" name="Amostra" id="Amostra">
+            </div>
+            <div class="input-field">
+                <label for="Sucesso"> <p> Taxa de Sucesso (P) - "0 - 100" </p></label>
+                <input type="number" name="Sucesso" id="Sucesso">
+            </div>
+            <div class="input-field">
+                <label for="Fracasso"> <p> Taxa de Fracasso (Q) - "0 - 100" </p></label>
+                <input type="number" name="Fracasso" id="Fracasso">
+            </div>
+            <div class="input-field">
+                <label for="Evento"> <p> Informe os Eventos separados por ";" </p></label>
+                <input type="text" name="Evento" id="Evento">
+            </div>
+            <div class="input-field">
+                <button class="justbutton" onclick="Binomial()">Calcular</button>
+            </div>
+            <div class="mtp col m12 l12">
+                <h1 id="Resultado"></h1>
+            </div>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+            <script src='box.js'></script>
         </div>
-        <div class="input-field">
-            <label for="Amostra"> <p> Quantidade da Amostra </p></label>
-            <input type="number" name="Amostra" id="Amostra">
         </div>
-        <div class="input-field">
-            <label for="Sucesso"> <p> Taxa de Sucesso (P) - "0 - 100" </p></label>
-            <input type="number" name="Sucesso" id="Sucesso">
-        </div>
-        <div class="input-field">
-            <label for="Fracasso"> <p> Taxa de Fracasso (Q) - "0 - 100" </p></label>
-            <input type="number" name="Fracasso" id="Fracasso">
-        </div>
-        <div class="input-field">
-            <label for="Evento"> <p> Informe os Eventos separados por ";" </p></label>
-            <input type="text" name="Evento" id="Evento">
-        </div>
-        <div class="input-field">
-            <button class="justbutton" onclick="Binomial()">Calcular</button>
-        </div>
-        <div class="mtp col m12 l12">
-            <h3 id="Resultado"></h3>
-        </div>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <script src='box.js'></script>
-  
+        
+    <div class="bigcontainer" id="Uniforme" style="margin-left: 151px;" >
         <div class="input-field">
             <h2>Uniforme</h2>
         </div>
@@ -76,9 +80,46 @@
             <button class="justbutton" onclick="Uniforme()">Calcular</button>
         </div>
         <div class="mtp col m12 l12">
-            <h3 id="Resul"></h3>
+            <h1 id="Resul"></h1>
         </div>
         </div>
+    </div>
+    <div class="bigcontainer" id="Normal" style="margin-left: 151px;" >
+        <div class="uni">
+        <div class="input-field">
+            <h2>D. Normal</h2>
+        </div>
+        <div class="input-field">
+            <label for="Media"><p>Média</p></label>
+            <input type="number" name="Media" id="Media">
+        </div>
+        <div class="input-field">
+            <label for="Desvio"><p>Desvio Padrão</p></label>
+            <input type="number" name="Desvio" id="Desvio">
+        </div>
+        <div class="input-field">
+            <select name="Escolha_" id="Escolha_">
+                <option disabled selected>Escolha</option>
+                <option value="Menor">Menor</option>
+                <option value="Entre">Entre</option>
+                <option value="Maior">Maior</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <input type="number" name="Valr" id="Valr">
+            <label for="Valr"><p>Valor</p></label>
+        </div>
+        <div class="input-field">
+            <input type="number" name="Vlr" id="Vlr">
+            <label for="Vlr"><p>Vl2</p></label>
+        </div>
+        <div>
+            <button class="justbutton" onclick="CalcularN()">Calcular</button>
+        </div>
+        <div class="input-field">
+            <h1 id="ResultadoN"></h1>
+        </div>
+    </div>
     </div>
     </p>
 </body>
