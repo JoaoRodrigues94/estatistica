@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="correlacao.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" href="correlacao.css"></link>
+    <title>Estátistica Grupo 3</title>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="titlecontainer">
+        <h1 class="text-center">Estatísticas - Grupo 3</h1>
+        </div>
+    </div>
+    <div class="col-md-12"> 
+      <div class="buttoncontainer" >
+        <a class="index-page" href="./index.html">
+            Descritiva
+        </a>
+        <a class="binomial-page" href="./binomial.html">
+            Probabilidade
+        </a>
+        <a class="correlation-page" href="./correlacao.html">
+            Correlação
+        </a>
+    </div>
+    <div class="bigcontainer" id="Binomial" >
+        <div class="box" >
+            <div class="input-fiel">
+                <h2>Correlação</h2>
+            </div>
+            <div class="input-field">
+                <label for="X"><p>Insira os dados de X separados por ";"</p></label>
+                <input type="text" name="X" id="X">
+            </div>
+            <div class="input-field">
+                <label for="Y"><p>Insira os dados de Y separados por ";"</p></label>
+                <input type="text" name="Y" id="Y">
+            </div>
+            <div class="input-field">
+                <button class="justbutton" onclick="correlacao()">Calcular</button>
+            </div>
+            <div class="mtp col m12 l12">
+                <h1 id="Resultado"></h1>
+                <h1 id="Regressao"></h1>
+            </div>
+            <div id="ResFinal" class="input-field"  style="visibility: hidden;">
+                <button class="justbutton" onclick="Conta()">Calcular</button>
+            </div>
+            <div class="mtp col m12 l12">
+                <h1 id="XY"></h1>
+            </div>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+            <script src='box.js'></script>
+        </div>
+        <!--Função para o gráfico, aqui ele deve aparecer somente ao clicar no botão Calcular-->
+    </div>
+    <div >
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+    </div>
+</body>
+</html>

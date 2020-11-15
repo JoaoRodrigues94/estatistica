@@ -47,6 +47,24 @@ function Binomial(){
     document.getElementById('Resultado').innerHTML = "Probabilidade: " + resultado.toFixed(2) + " %"
 }
 
+function Mostrar(){
+  let escolha = document.getElementById('Escolha').value
+  let escolha_ = document.getElementById('Escolha_').value
+
+  if(escolha == "Entre"){
+      document.getElementById("Ent").style = "visibility: visible;"
+  } 
+  else {
+    document.getElementById("Ent").style = "visibility: hidden;"
+  }
+  if(escolha_ == "Entre"){
+      document.getElementById("Vlr").style = "visibility: visible;"
+  } 
+  else {
+    document.getElementById("Vlr").style = "visibility: hidden;"
+  }
+}
+
 function Uniforme(){
     const menor = document.getElementById('Menor').value
     const maior = document.getElementById('Maior').value

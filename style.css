@@ -1,17 +1,17 @@
 :root{
 
   /* Variáveis CSS!*/
-  --color-background: rgb(217, 150, 243);
-  --color-primary-lighter: #9871F5;
-  --color-primary-light: #916BEA;
-  --color-primary: #8257E5;
-  --color-primary-dark: #774DD6;
-  --color-primary-darker: #6842c2;
-  --color-secondary: #04D361;
-  --color-secondary-dark: #04BF58;
+  --color-background:  #32264D;
+  --color-primary-lighter: #546d86;
+  --color-primary-light:#34495e;
+  --color-primary:#C1BCCC;
+  --color-primary-dark: #6A6180;
+  --color-primary-darker: #0065ca;
+  --color-secondary: #2467aa;
+  --color-secondary-dark: #173d64;
   --color-title-in-primary: #FFFFFF;
   --color-text-in-primary: #D4C2FF;
-  --color-text-title: #32264D;
+  --color-text-title: rgb(43, 40, 51);
   --color-text-complement: #9C98A6;
   --color-text-base: #6A6180;
   --color-line-in-white: #E6E6F0;
@@ -30,6 +30,7 @@
 
 .titlecontainer{
   color: var(--color-primary-darker);
+  font-family: cursive;
 }
 
 .bigcontainer{
@@ -44,15 +45,87 @@
   padding-left: 2rem;
   align-self: center;
   align-content: center;
+  font-family: cursive;
 }
 
-.buttoncontainer{
-  width: 130px;
-  border: solid var(--color-primary-light) 1px;
-  border-radius: 0.8rem;
-  align-content: center;
-  background-color:lightskyblue;
-  padding-left: 3px;
+.justbutton {
+  background: var(--color-primary-lighter);
+  display: flex;
+  justify-content: center;
+  width: 66rem;
+  height: 3rem;
+
+  border-color: var(--color-primary-light);
+  border-radius: .8rem;
+  margin-right: 1.6rem;
+
+  font:15 Archivo;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  transition: background 0.2s;
+
+  color: var(--color-button-text);
+}
+
+.justbutton:hover {
+  background: var(--color-primary-light);
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  margin: 3.2rem 0;
+}
+
+.buttoncontainer a {
+  width: 30rem;
+  height: 3rem;
+
+  border-radius: .8rem;
+  margin-right: 1.6rem;
+
+  font:15 Archivo;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  transition: background 0.2s;
+
+  color: var(--color-button-text);
+}
+
+.buttoncontainer a.index-page {
+  background: var(--color-primary-lighter);
+}
+
+.buttoncontainer a.index-page:hover {
+  background: var(--color-primary-light);
+}
+
+.buttoncontainer a.binomial-page:hover {
+  background: var(--color-secondary-dark);
+}
+
+.buttoncontainer a.binomial-page {
+  background: var(--color-secondary);
+  margin-right: 0;
+}
+
+.buttoncontainer a.correlation-page {
+  background: var(--color-primary-lighter);
+  margin-left: 1.6rem;
+}
+
+.buttoncontainer a.correlation-page:hover {
+  background: var(--color-primary-light);
 }
 
 html, body{

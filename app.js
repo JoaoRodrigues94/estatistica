@@ -3,7 +3,8 @@ function Dados(){
     function QualiNominaleDiscreta(){
         var dados = document.getElementById('dados').value //Captção de dados
         var vetorDados = dados.split(';')
-        vetorDados.sort()//Divisão dos dados entre o ";"
+        mergeSort(vetorDados)
+       // vetorDados.sort()//Divisão dos dados entre o ";"
         for(var i = 0;i < vetorDados.length;i++){//loop para remover os espaços no fim e no inicio
             vetorDados[i] = vetorDados[i].trim()
         }
@@ -12,17 +13,16 @@ function Dados(){
         var occurrences = {}
         var nomesVetor = []
         var frequency = []
+
         for (var i = 0, j = vetorDados.length; i < j; i++) {
             if (vetorDados[i] == "") { //tratamento de dados caso o usuario coloque um ";" a mais
       
             } else {
               occurrences[vetorDados[i]] = (occurrences[vetorDados[i]] || 0) + 1;// esse algoritimo conta o numero de variaveis repetidas
-              //console.log(occurrences)
             }
         }
         nomesVetor.push(Object.keys(occurrences))//Esse push coloca os valores do objeto na matriz nomesVetor
-        
-        //console.log(nomesVetor[0])
+
         const corpo_tabela = document.querySelector("tbody");
   
 
@@ -415,26 +415,26 @@ function Dados(){
 
         let mais = 0
         for(let i = 0; i < cont; i++){
-        if(i === 0){
-          mais = respostas[i] + lin
-          m[i] = (respostas[i])
-          m[i+1] = (respostas[i] + lin)
-          ajd[i] = `${respostas[i]} |- ${respostas[i] + lin}`
-          contar.push(respostas[i] + respostas[i] + lin)
-        }else if(mais <= ultimo){
-          ajd[i] = `${mais} |- ${mais+ lin}`
-          m[i] = mais
-          m[i + 1] = mais + lin
-          mais = mais + lin
-          contar.push(mais + mais + lin)
-        }else{
-          ajd[i] = `${mais} |-`
-          m[i] = mais
-          m[i + 1] = mais + lin
-          contar.push(mais + mais + lin)
-          break
+          if(i === 0){
+            mais = respostas[i] + lin
+            m[i] = (respostas[i])
+            m[i+1] = (respostas[i] + lin)
+            ajd[i] = `${respostas[i]} |- ${respostas[i] + lin}`
+            contar.push(respostas[i] + respostas[i] + lin)
+          }else if(mais <= ultimo){
+            ajd[i] = `${mais} |- ${mais+ lin}`
+            m[i] = mais
+            m[i + 1] = mais + lin
+            mais = mais + lin
+            contar.push(mais + mais + lin)
+          }else{
+            ajd[i] = `${mais} |-`
+            m[i] = mais
+            m[i + 1] = mais + lin
+            contar.push(mais + mais + lin)
+            break
+          }
         }
-      }
         for (let j = 0; j < cont; j++) {
           var linha = document.createElement("tr");
           var campo_ord = document.createElement("td")
@@ -528,6 +528,44 @@ function Dados(){
   }
 }
 
+function mergeSort(vetorDados) {
+
+  function mesclarVetores(vetEsq, vetDir) {
+      let vetRes = [], posEsq = 0, posDir = 0, sobra
+
+      while(posEsq < vetEsq.length && posDir < vetDir.length) {
+          if(vetEsq[posEsq] < vetDir[posDir]) {
+              vetRes.push(vetEsq[posEsq])
+              posEsq++
+          }
+          else { // vetDir[posDir] < vetEsq[posEsq]
+              vetRes.push(vetDir[posDir])
+              posDir++
+          }
+      }
+      
+      // Trazer para o vetRes a sobra do vetor que NÃO chegou ao final
+      if(posEsq < posDir) sobra = vetEsq.slice(posEsq) // Sobra à esquerda
+      else sobra = vetDir.slice(posDir) // Sobra à direita
+      
+      //console.log({posEsq, posDir, sobra})
+
+      return vetRes.concat(sobra)
+  }
+
+  if(vetorDados.length > 1) {
+      let meio = Math.floor(vetorDados.length / 2)
+      let vetEsq = vetorDados.slice(0, meio)
+      let vetDir = vetorDados.slice(meio) // Do meio ao fim
+      //console.log('ANTES:', {vetor, vetEsq, vetDir})
+      vetEsq = mergeSort(vetEsq)
+      vetDir = mergeSort(vetDir)
+      let vetFinal = mesclarVetores(vetEsq, vetDir)
+      //console.log('DEPOIS:', {vetFinal, vetEsq, vetDir})
+      return vetFinal
+  }
+  return vetorDados
+}
 
 //-------------------------------------FUNÇOES DOS GRAFICOS----------------------------------------------//
 

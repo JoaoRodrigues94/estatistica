@@ -9,6 +9,12 @@
     <title>Estátistica Grupo 3</title>
 </head>
 <body>
+    <div class="col-md-12">
+        <div class="titlecontainer">
+        <h1 class="text-center">Estatísticas - Grupo 3</h1>
+        </div>
+    </div>
+    <div class="col-md-12"> 
       <div class="buttoncontainer" >
         <a class="index-page" href="./index.html">
             Descritiva
@@ -16,8 +22,11 @@
         <a class="binomial-page" href="./binomial.html">
             Probabilidade
         </a>
+        <a class="correlation-page" href="./correlacao.html">
+            Correlação
+        </a>
     </div>
-    <div class="bigcontainer" id="Binomial" style="margin-left: 151px;" >
+    <div class="bigcontainer" id="Binomial" >
         <div class="box" >
             <div class="input-fiel">
                 <h2>Binomial</h2>
@@ -49,31 +58,31 @@
         </div>
         </div>
         
-    <div class="bigcontainer" id="Uniforme" style="margin-left: 151px;" >
-        <div class="input-field">
+    <div class="bigcontainer" id="Uniforme" >
+        <div class="input-fiel">
             <h2>Uniforme</h2>
         </div>
         <div class="uni">
-        <div class="input-field">
+        <div>
             <label for="Menor"> <p> Menor Valor </p></label>
             <input type="number" name="Menor" id="Menor">
         </div>
-        <div class="input-field">
+        <div>
             <label for="Maior"> <p> Maior Valor </p></label>
             <input type="number" name="Maior" id="Maior">
         </div>
-        <div class=" input-field">
-            <select name="Escolha" id="Escolha">
+        <div>
+            <select name="Escolha" id="Escolha" onclick="Mostrar()">
                 <option disabled selected>Escolha</option>
                 <option value="Menor">Menor Que</option>
                 <option value="Entre">Entre</option>
                 <option value="Maior">Maior</option>
             </select>
         </div>
-        <div class="input-field">
+        <div>
             <input type="number" name="Valor" id="Valor">
             <label for="Valor"></label>
-            <input type="number" name="Ent" id="Ent">
+            <input type="number" name="Ent" id="Ent" style="visibility: hidden;">
             <label for="Ent"></label>
         </div>
         <div>
@@ -84,43 +93,41 @@
         </div>
         </div>
     </div>
-    <div class="bigcontainer" id="Normal" style="margin-left: 151px;" >
+    <div class="bigcontainer" id="Normal" >
         <div class="uni">
-        <div class="input-field">
+        <div class="input-fiel">
             <h2>D. Normal</h2>
         </div>
-        <div class="input-field">
+        <div>
             <label for="Media"><p>Média</p></label>
             <input type="number" name="Media" id="Media">
         </div>
-        <div class="input-field">
+        <div>
             <label for="Desvio"><p>Desvio Padrão</p></label>
             <input type="number" name="Desvio" id="Desvio">
         </div>
-        <div class="input-field">
-            <select name="Escolha_" id="Escolha_">
+        <div>
+            <select name="Escolha_" id="Escolha_" onclick="Mostrar()">
                 <option disabled selected>Escolha</option>
                 <option value="Menor">Menor</option>
                 <option value="Entre">Entre</option>
                 <option value="Maior">Maior</option>
             </select>
         </div>
-        <div class="input-field">
+        <div>
             <input type="number" name="Valr" id="Valr">
-            <label for="Valr"><p>Valor</p></label>
-        </div>
-        <div class="input-field">
-            <input type="number" name="Vlr" id="Vlr">
-            <label for="Vlr"><p>Vl2</p></label>
+            <label for="Valr"></label>
+            <input type="number" name="Vlr" id="Vlr" style="visibility: hidden;">
+            <label for="Vlr"></label>
         </div>
         <div>
             <button class="justbutton" onclick="CalcularN()">Calcular</button>
         </div>
-        <div class="input-field">
+        <div>
             <h1 id="ResultadoN"></h1>
         </div>
     </div>
     </div>
-    </p>
+    <img src="flor.png">
 </body>
 </html>
